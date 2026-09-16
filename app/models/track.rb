@@ -3,6 +3,8 @@ class Track < ApplicationRecord
   belongs_to :preset, optional: true
   has_many :consumptions, dependent: :destroy
   has_many :milestones, dependent: :destroy
+  has_many :share_links, dependent: :destroy
+  has_many :grants, dependent: :destroy
 
   enum :status, { active: 0, paused: 1, closed: 2 }, validate: true
 

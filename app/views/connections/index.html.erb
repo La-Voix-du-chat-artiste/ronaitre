@@ -1,0 +1,116 @@
+<% content_for :title, "Entourage — Ronaitre" %>
+
+<h1 class="text-3xl font-extrabold tracking-tight"><%= t("connections.title") %></h1>
+<p class="mt-2 max-w-2xl text-muted-foreground"><%= t("connections.subtitle") %></p>
+
+<div class="mt-8 grid gap-5 lg:grid-cols-3">
+  <%# Inviter %>
+  <%= render CardComponent.new(html: { class: "p-7" }) do %>
+    <h2 class="font-bold"><%= t("connections.invite_title") %></h2>
+    <%= form_with url: connections_path, class: "mt-4 space-y-4" do |form| %>
+      <div>
+        <%= render FieldComponent.new(label: t("connections.email_label"), for_attr: "invite_email") do %>
+          <%= form.email_field :email_address, id: "invite_email", required: true,
+                               class: "h-10 w-full rounded-lg border border-input bg-card px-3 text-sm focus-visible:outline-2 focus-visible:outline-ring" %>
+        <% end %>
+      </div>
+      <div>
+        <%= render FieldComponent.new(label: t("connections.kind_label"), for_attr: "invite_kind") do %>
+          <%= form.select :kind, [["Proche", "proche"], ["Soignant", "soignant"], ["Aidant de l'application", "aidant"]], {}, id: "invite_kind",
+                          class: "h-10 w-full rounded-lg border border-input bg-card px-3 text-sm focus-visible:outline-2 focus-visible:outline-ring" %>
+        <% end %>
+      </div>
+      <p class="text-xs text-muted-foreground"><%= t("connections.invite_help") %></p>
+      <%= form.submit t("connections.invite_submit"), class: "inline-flex h-10 w-full items-center justify-center rounded-lg bg-primary px-5 font-semibold text-primary-foreground shadow-sm transition hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-ring" %>
+    <% end %>
+  <% end %>
+
+  <%# Réseau d'aidants %>
+  <%= render CardComponent.new(html: { class: "p-7" }) do %>
+    <h2 class="font-bold"><%= t("connections.network_title") %></h2>
+    <p class="mt-1 text-sm text-muted-foreground"><%= t("connections.network_help") %></p>
+    <div class="mt-4">
+      <%= link_to t("connections.network_cta"), aidants_path, class: "text-sm font-semibold text-primary hover:underline" %>
+    </div>
+  <% end %>
+
+  <%# Lien de partage info %>
+  <%= render CardComponent.new(html: { class: "p-7" }) do %>
+    <h2 class="font-bold"><%= t("connections.shares_title") %></h2>
+    <p class="mt-1 text-sm text-muted-foreground"><%= t("connections.shares_help") %></p>
+    <ul class="mt-4 space-y-2 text-sm">
+      <% Current.user.tracks.ordered.each do |track| %>
+        <li class="flex items-center justify-between gap-2">
+          <span class="flex items-center gap-2"><span class="h-2 w-2 rounded-full <%= track_color_class(track.color) %>"></span><%= track.name %></span>
+          <span class="counter-digits text-muted-foreground"><%= track.share_links.active.count %> <%= t("connections.active_links") %></span>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
+<h2 class="mt-12 text-sm font-bold uppercase tracking-widest text-muted-foreground"><%= t("connections.my_connections") %></h2>
+
+<% if @memberships.empty? %>
+  <%= render CardComponent.new(html: { class: "mt-4 p-8 text-center text-muted-foreground" }) do %>
+    <%= t("connections.empty") %>
+  <% end %>
+<% else %>
+  <div class="mt-4 space-y-4">
+    <% @memberships.each do |membership| %>
+      <%= render CardComponent.new(html: { class: "p-6" }) do %>
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <p class="font-bold"><%= membership.member.display_name.presence || membership.member.email_address %></p>
+            <p class="text-sm text-muted-foreground"><%= t("membership.kinds.#{membership.kind}") %> · <%= membership.member.email_address %></p>
+          </div>
+          <div class="flex items-center gap-3">
+            <% if membership.invited? %>
+              <%= render BadgeComponent.new(variant: :muted) { t("connections.waiting") } %>
+            <% elsif membership.active? %>
+              <%= render BadgeComponent.new(variant: :mint) { t("connections.active_badge") } %>
+            <% else %>
+              <%= render BadgeComponent.new(variant: :destructive) { t("connections.revoked_badge") } %>
+            <% end %>
+            <% unless membership.revoked? %>
+              <%= button_to t("connections.revoke_btn"), connection_path(membership), method: :delete,
+                            data: { turbo_confirm: t("connections.revoke_confirm") },
+                            class: "text-sm font-semibold text-destructive hover:underline", form: { class: "inline" } %>
+            <% end %>
+          </div>
+        </div>
+
+        <% unless membership.revoked? %>
+          <div class="mt-5 border-t border-border pt-4">
+            <p class="mb-3 text-sm font-medium"><%= t("connections.grants_title") %></p>
+            <%= form_with model: membership, url: connection_path(membership), method: :patch, class: "space-y-2.5" do |form| %>
+              <% @tracks.each do |track| %>
+                <% grant = membership.grants.find_by(track: track) %>
+                <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+                  <label class="flex w-44 items-center gap-2 font-medium">
+                    <input type="checkbox" name="grants[<%= track.id %>]" value="1" <%= "checked" if grant %>
+                           class="h-4 w-4 rounded border-input accent-primary" />
+                    <span class="flex items-center gap-1.5"><span class="h-2 w-2 rounded-full <%= track_color_class(track.color) %>"></span><%= track.name %></span>
+                  </label>
+                  <label class="flex items-center gap-2 text-muted-foreground">
+                    <input type="checkbox" name="details[<%= track.id %>]" value="1" <%= "checked" if grant&.can_view_details %>
+                           class="h-4 w-4 rounded border-input accent-primary" />
+                    <%= t("connections.grant_details") %>
+                  </label>
+                </div>
+              <% end %>
+              <label class="flex items-center gap-2 pt-1 text-sm text-muted-foreground">
+                <input type="checkbox" name="can_message" value="1" <%= "checked" if membership.grants.any? && membership.grants.first.can_message %>
+                       class="h-4 w-4 rounded border-input accent-primary" />
+                <%= t("connections.grant_message") %>
+              </label>
+              <div class="pt-2">
+                <%= form.submit t("connections.save_grants"), class: "inline-flex h-9 items-center rounded-lg bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-sm transition hover:bg-primary/90" %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

@@ -13,11 +13,15 @@
     <% end %>
   </div>
   <div class="flex flex-wrap items-center gap-2">
-    <%= link_to t("tracks.edit"), edit_track_path(@track), class: "text-sm font-semibold text-primary hover:underline" %>
-    <% if @track.active? %>
-      <%= button_to t("tracks.pause"), pause_track_path(@track), method: :post, class: "text-sm text-muted-foreground hover:text-foreground", form: { class: "inline" } %>
-    <% elsif @track.paused? %>
-      <%= button_to t("tracks.resume"), resume_track_path(@track), method: :post, class: "text-sm font-semibold text-primary hover:underline", form: { class: "inline" } %>
+    <% if @policy.owner? %>
+      <%= link_to t("tracks.edit"), edit_track_path(@track), class: "text-sm font-semibold text-primary hover:underline" %>
+      <% if @track.active? %>
+        <%= button_to t("tracks.pause"), pause_track_path(@track), method: :post, class: "text-sm text-muted-foreground hover:text-foreground", form: { class: "inline" } %>
+      <% elsif @track.paused? %>
+        <%= button_to t("tracks.resume"), resume_track_path(@track), method: :post, class: "text-sm font-semibold text-primary hover:underline", form: { class: "inline" } %>
+      <% end %>
+    <% else %>
+      <span class="text-xs text-muted-foreground"><%= t("tracks.shared_view") %></span>
     <% end %>
   </div>
 </div>
@@ -87,83 +91,128 @@
 
 <%# Consommations %>
 <div class="mt-5 grid gap-5 lg:grid-cols-3">
-  <%= render CardComponent.new(html: { class: "p-7" }) do %>
-    <h2 class="font-bold"><%= t("tracks.log_consumption") %></h2>
-    <p class="mt-1 text-sm text-muted-foreground"><%= t("consumptions.reassurance") %></p>
-    <%= form_with model: [@track, @consumption], class: "mt-5 space-y-4" do |form| %>
-      <div>
-        <%= render FieldComponent.new(label: t("consumptions.when"), for_attr: "consumption_occurred_at") do %>
-          <%= form.datetime_local_field :occurred_at, id: "consumption_occurred_at", required: true,
-                                        value: Time.current.strftime("%Y-%m-%dT%H:%M"),
-                                        class: "h-10 w-full rounded-lg border border-input bg-card px-3 text-sm focus-visible:outline-2 focus-visible:outline-ring" %>
-        <% end %>
-      </div>
-      <div class="grid grid-cols-2 gap-3">
+  <% if @policy.owner? %>
+    <%= render CardComponent.new(html: { class: "p-7" }) do %>
+      <h2 class="font-bold"><%= t("tracks.log_consumption") %></h2>
+      <p class="mt-1 text-sm text-muted-foreground"><%= t("consumptions.reassurance") %></p>
+      <%= form_with model: [@track, @consumption], class: "mt-5 space-y-4" do |form| %>
         <div>
-          <%= render FieldComponent.new(label: t("consumptions.quantity"), for_attr: "consumption_quantity") do %>
-            <%= form.number_field :quantity, id: "consumption_quantity", step: "0.5", min: "0",
+          <%= render FieldComponent.new(label: t("consumptions.when"), for_attr: "consumption_occurred_at") do %>
+            <%= form.datetime_local_field :occurred_at, id: "consumption_occurred_at", required: true,
+                                          value: Time.current.strftime("%Y-%m-%dT%H:%M"),
+                                          class: "h-10 w-full rounded-lg border border-input bg-card px-3 text-sm focus-visible:outline-2 focus-visible:outline-ring" %>
+          <% end %>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <%= render FieldComponent.new(label: t("consumptions.quantity"), for_attr: "consumption_quantity") do %>
+              <%= form.number_field :quantity, id: "consumption_quantity", step: "0.5", min: "0",
+                                    class: "h-10 w-full rounded-lg border border-input bg-card px-3 text-sm focus-visible:outline-2 focus-visible:outline-ring" %>
+            <% end %>
+          </div>
+          <div>
+            <%= render FieldComponent.new(label: t("consumptions.unit"), for_attr: "consumption_unit") do %>
+              <%= form.text_field :unit, id: "consumption_unit", value: @track.preset&.unit_word,
                                   class: "h-10 w-full rounded-lg border border-input bg-card px-3 text-sm focus-visible:outline-2 focus-visible:outline-ring" %>
-          <% end %>
+            <% end %>
+          </div>
         </div>
         <div>
-          <%= render FieldComponent.new(label: t("consumptions.unit"), for_attr: "consumption_unit") do %>
-            <%= form.text_field :unit, id: "consumption_unit", value: @track.preset&.unit_word,
-                                class: "h-10 w-full rounded-lg border border-input bg-card px-3 text-sm focus-visible:outline-2 focus-visible:outline-ring" %>
+          <%= render FieldComponent.new(label: t("consumptions.note"), for_attr: "consumption_note") do %>
+            <%= form.text_area :note, id: "consumption_note", rows: 2, maxlength: 500,
+                               class: "w-full rounded-lg border border-input bg-card px-3 py-2 text-sm focus-visible:outline-2 focus-visible:outline-ring" %>
           <% end %>
         </div>
-      </div>
-      <div>
-        <%= render FieldComponent.new(label: t("consumptions.note"), for_attr: "consumption_note") do %>
-          <%= form.text_area :note, id: "consumption_note", rows: 2, maxlength: 500,
-                             class: "w-full rounded-lg border border-input bg-card px-3 py-2 text-sm focus-visible:outline-2 focus-visible:outline-ring" %>
-        <% end %>
-      </div>
-      <%= form.submit t("consumptions.submit"), class: "inline-flex h-10 w-full items-center justify-center rounded-lg bg-secondary px-5 font-semibold text-secondary-foreground shadow-sm transition hover:brightness-95 focus-visible:outline-2 focus-visible:outline-ring" %>
+        <%= form.submit t("consumptions.submit"), class: "inline-flex h-10 w-full items-center justify-center rounded-lg bg-secondary px-5 font-semibold text-secondary-foreground shadow-sm transition hover:brightness-95 focus-visible:outline-2 focus-visible:outline-ring" %>
+      <% end %>
     <% end %>
   <% end %>
 
-  <%= render CardComponent.new(html: { class: "p-7 lg:col-span-2" }) do %>
-    <h2 class="font-bold"><%= t("tracks.history") %></h2>
-    <% if @recent_consumptions.empty? %>
-      <p class="mt-3 text-sm text-muted-foreground"><%= t("consumptions.empty") %></p>
-    <% else %>
-      <ul class="mt-4 divide-y divide-border text-sm">
-        <% @recent_consumptions.each do |consumption| %>
-          <li class="flex items-center justify-between gap-3 py-2.5">
-            <div>
-              <p class="font-medium">
-                <%= l(consumption.occurred_at, format: :short) %>
-                <% if consumption.quantity %>
-                  · <%= format("%g", consumption.quantity) %> <%= consumption.unit %>
+  <% if @policy.owner? || @policy.view_details? %>
+    <%= render CardComponent.new(html: { class: "p-7 lg:col-span-2" }) do %>
+      <h2 class="font-bold"><%= t("tracks.history") %></h2>
+      <% if @recent_consumptions.empty? %>
+        <p class="mt-3 text-sm text-muted-foreground"><%= t("consumptions.empty") %></p>
+      <% else %>
+        <ul class="mt-4 divide-y divide-border text-sm">
+          <% @recent_consumptions.each do |consumption| %>
+            <li class="flex items-center justify-between gap-3 py-2.5">
+              <div>
+                <p class="font-medium">
+                  <%= l(consumption.occurred_at, format: :short) %>
+                  <% if consumption.quantity %>
+                    · <%= format("%g", consumption.quantity) %> <%= consumption.unit %>
+                  <% end %>
+                </p>
+                <% if consumption.note.present? %>
+                  <p class="mt-0.5 text-muted-foreground"><%= consumption.note %></p>
                 <% end %>
-              </p>
-              <% if consumption.note.present? %>
-                <p class="mt-0.5 text-muted-foreground"><%= consumption.note %></p>
+              </div>
+              <% if @policy.owner? %>
+                <%= button_to t("consumptions.delete"), track_consumption_path(@track, consumption), method: :delete,
+                              class: "text-xs text-muted-foreground hover:text-destructive", form: { class: "inline" } %>
               <% end %>
-            </div>
-            <%= button_to t("consumptions.delete"), track_consumption_path(@track, consumption), method: :delete,
-                          class: "text-xs text-muted-foreground hover:text-destructive", form: { class: "inline" } %>
-          </li>
-        <% end %>
-      </ul>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
     <% end %>
   <% end %>
 </div>
 
-<%# Zone de décision %>
-<%= render CardComponent.new(html: { class: "mt-5 border-destructive/20 p-7" }) do %>
-  <h2 class="font-bold"><%= t("tracks.decision_zone") %></h2>
-  <p class="mt-1 text-sm text-muted-foreground"><%= t("tracks.decision_help") %></p>
-  <div class="mt-4 flex flex-wrap gap-3">
-    <% if @track.active? || @track.paused? %>
-      <%= button_to t("tracks.restart"), restart_track_path(@track), method: :post,
-                    data: { turbo_confirm: t("tracks.restart_confirm") },
-                    class: "inline-flex h-10 items-center rounded-lg border border-border px-4 text-sm font-semibold hover:bg-muted", form: { class: "inline" } %>
+<% if @policy.owner? %>
+  <%# Partage %>
+  <%= render CardComponent.new(html: { class: "mt-5 p-7", id: "partage" }) do %>
+    <h2 class="font-bold"><%= t("share_links.title") %></h2>
+    <p class="mt-1 text-sm text-muted-foreground"><%= t("share_links.help") %></p>
+
+    <% if @track.share_links.active.any? %>
+      <ul class="mt-4 divide-y divide-border text-sm">
+        <% @track.share_links.active.each do |share| %>
+          <li class="flex flex-wrap items-center justify-between gap-3 py-2.5">
+            <div class="min-w-0">
+              <p class="counter-digits truncate text-xs text-muted-foreground"><%= shared_calendar_url(share.token) %></p>
+              <p class="mt-0.5 text-xs text-muted-foreground">
+                <%= share.views_count %> <%= t("share_links.views") %>
+                <% if share.password_digest.present? %> · <%= t("share_links.protected") %><% end %>
+              </p>
+            </div>
+            <div class="flex items-center gap-2">
+              <%= link_to t("share_links.open"), shared_calendar_path(share.token), target: "_blank", rel: "noopener", class: "text-xs font-semibold text-primary hover:underline" %>
+              <%= button_to t("share_links.revoke"), track_share_link_path(@track, share), method: :delete,
+                            class: "text-xs font-semibold text-destructive hover:underline", form: { class: "inline" } %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
     <% end %>
-    <% unless @track.closed? %>
-      <%= button_to t("tracks.close"), close_track_path(@track), method: :post,
-                    data: { turbo_confirm: t("tracks.close_confirm") },
-                    class: "inline-flex h-10 items-center rounded-lg border border-destructive/40 px-4 text-sm font-semibold text-destructive hover:bg-destructive/5", form: { class: "inline" } %>
+
+    <%= form_with url: track_share_links_path(@track), class: "mt-4 flex flex-wrap items-end gap-3" do |form| %>
+      <div class="grow-0">
+        <%= render FieldComponent.new(label: t("share_links.password_label"), for_attr: "share_password", hint: t("share_links.password_hint")) do %>
+          <%= form.password_field :password, id: "share_password",
+                                  class: "h-10 w-52 rounded-lg border border-input bg-card px-3 text-sm focus-visible:outline-2 focus-visible:outline-ring" %>
+        <% end %>
+      </div>
+      <%= form.submit t("share_links.create"), class: "inline-flex h-10 items-center rounded-lg border border-primary/40 bg-primary/10 px-4 text-sm font-semibold text-primary hover:bg-primary/20" %>
     <% end %>
-  </div>
+  <% end %>
+
+  <%# Zone de décision %>
+  <%= render CardComponent.new(html: { class: "mt-5 border-destructive/20 p-7" }) do %>
+    <h2 class="font-bold"><%= t("tracks.decision_zone") %></h2>
+    <p class="mt-1 text-sm text-muted-foreground"><%= t("tracks.decision_help") %></p>
+    <div class="mt-4 flex flex-wrap gap-3">
+      <% if @track.active? || @track.paused? %>
+        <%= button_to t("tracks.restart"), restart_track_path(@track), method: :post,
+                      data: { turbo_confirm: t("tracks.restart_confirm") },
+                      class: "inline-flex h-10 items-center rounded-lg border border-border px-4 text-sm font-semibold hover:bg-muted", form: { class: "inline" } %>
+      <% end %>
+      <% unless @track.closed? %>
+        <%= button_to t("tracks.close"), close_track_path(@track), method: :post,
+                      data: { turbo_confirm: t("tracks.close_confirm") },
+                      class: "inline-flex h-10 items-center rounded-lg border border-destructive/40 px-4 text-sm font-semibold text-destructive hover:bg-destructive/5", form: { class: "inline" } %>
+      <% end %>
+    </div>
+  <% end %>
 <% end %>

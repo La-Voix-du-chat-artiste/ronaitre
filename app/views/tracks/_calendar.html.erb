@@ -1,12 +1,14 @@
 <%= turbo_frame_tag "calendar" do %>
+  <% prev_path = local_assigns[:nav] ? nav.call(@month.prev_month.strftime("%Y-%m")) : calendar_track_path(@track, ym: @month.prev_month.strftime("%Y-%m")) %>
+  <% next_path = local_assigns[:nav] ? nav.call(@month.next_month.strftime("%Y-%m")) : calendar_track_path(@track, ym: @month.next_month.strftime("%Y-%m")) %>
   <div class="flex items-center justify-between">
     <div class="flex items-center gap-2">
-      <%= link_to calendar_track_path(@track, ym: @month.prev_month.strftime("%Y-%m")), data: { turbo_frame: "calendar" },
+      <%= link_to prev_path, data: { turbo_frame: "calendar" },
                   class: "flex h-8 w-8 items-center justify-center rounded-lg border border-border text-muted-foreground hover:bg-muted", "aria-label": "Mois précédent" do %>
         <svg viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4"><path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 0 1-.02 1.06L8.832 10l3.938 3.71a.75.75 0 1 1-1.04 1.08l-4.5-4.25a.75.75 0 0 1 0-1.08l4.5-4.25a.75.75 0 0 1 1.06.02Z" clip-rule="evenodd"/></svg>
       <% end %>
       <h2 class="min-w-40 text-center font-bold capitalize"><%= l(@month, format: "%B %Y") %></h2>
-      <%= link_to calendar_track_path(@track, ym: @month.next_month.strftime("%Y-%m")), data: { turbo_frame: "calendar" },
+      <%= link_to next_path, data: { turbo_frame: "calendar" },
                   class: "flex h-8 w-8 items-center justify-center rounded-lg border border-border text-muted-foreground hover:bg-muted", "aria-label": "Mois suivant" do %>
         <svg viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4"><path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 0 1 .02-1.06L11.168 10 7.23 6.29a.75.75 0 1 1 1.04-1.08l4.5 4.25a.75.75 0 0 1 0 1.08l-4.5 4.25a.75.75 0 0 1-1.06-.02Z" clip-rule="evenodd"/></svg>
       <% end %>

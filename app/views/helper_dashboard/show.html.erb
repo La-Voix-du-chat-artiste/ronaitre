@@ -1,0 +1,62 @@
+<% content_for :title, "Mes suivis accompagnés — Ronaitre" %>
+
+<h1 class="text-3xl font-extrabold tracking-tight"><%= t("helper.title") %></h1>
+<p class="mt-2 text-muted-foreground"><%= t("helper.subtitle") %></p>
+
+<% if @pending.any? %>
+  <h2 class="mt-8 text-sm font-bold uppercase tracking-widest text-muted-foreground"><%= t("helper.pending") %></h2>
+  <div class="mt-4 space-y-3">
+    <% @pending.each do |membership| %>
+      <%= render CardComponent.new(html: { class: "flex flex-wrap items-center justify-between gap-4 p-5" }) do %>
+        <div>
+          <p class="font-bold"><%= membership.owner.display_name.presence || membership.owner.email_address %></p>
+          <p class="text-sm text-muted-foreground"><%= t("helper.requests_help", kind: t("membership.kinds.#{membership.kind}")) %></p>
+        </div>
+        <div class="flex gap-2">
+          <%= button_to t("invitations.accept"), accept_membership_path(membership), method: :post,
+                        class: "inline-flex h-9 items-center rounded-lg bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-primary/90" %>
+          <%= button_to t("invitations.decline"), decline_membership_path(membership), method: :post,
+                        class: "inline-flex h-9 items-center rounded-lg border border-border px-4 text-sm font-semibold text-muted-foreground hover:bg-muted" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
+
+<% if @active.empty? %>
+  <%= render CardComponent.new(html: { class: "mt-8 p-10 text-center text-muted-foreground" }) do %>
+    <%= t("helper.empty") %>
+  <% end %>
+<% else %>
+  <div class="mt-8 space-y-5">
+    <% @active.each do |membership| %>
+      <%= render CardComponent.new(html: { class: "p-6" }) do %>
+        <div class="flex items-center justify-between">
+          <p class="font-bold"><%= membership.owner.display_name.presence || t("helper.anonymous_person") %></p>
+          <%= button_to t("connections.revoke_btn"), decline_membership_path(membership), method: :post,
+                        data: { turbo_confirm: t("helper.stop_confirm") },
+                        class: "text-sm font-semibold text-destructive hover:underline", form: { class: "inline" } %>
+        </div>
+        <div class="mt-4 grid gap-4 sm:grid-cols-2">
+          <% membership.granted_tracks.active.each do |track| %>
+            <% policy = TrackPolicy.new(Current.user, track) %>
+            <div class="rounded-lg border border-border p-4">
+              <div class="flex items-center justify-between">
+                <span class="flex items-center gap-2 text-sm font-bold"><span class="h-2.5 w-2.5 rounded-full <%= track_color_class(track.color) %>"></span><%= track.name %></span>
+                <span class="counter-digits text-sm font-semibold text-primary">J+<%= track.elapsed_days %></span>
+              </div>
+              <p class="counter-digits mt-1 text-xs text-muted-foreground"><%= counter_time(track.elapsed_seconds) %></p>
+              <% next_ms = track.next_milestone %>
+              <% if next_ms %>
+                <p class="mt-2 text-xs text-muted-foreground"><%= t("tracks.next_step") %> <strong><%= next_ms.label %></strong> · <%= t("tracks.in_days", days: [next_ms.seconds - track.elapsed_seconds, 0].max / 86_400) %></p>
+              <% end %>
+              <% if policy.view_details? && track.consumptions.any? %>
+                <p class="mt-2 text-xs text-muted-foreground"><%= t("helper.last_slip") %> <%= l(track.consumptions.order(:occurred_at).last.occurred_at, format: :short) %></p>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

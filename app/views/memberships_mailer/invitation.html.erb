@@ -1,0 +1,5 @@
+<p>Bonjour,</p>
+<p><%= @owner.display_name.presence || "Un proche" %> vous invite en tant que <strong><%= t("membership.kinds.#{@membership.kind}") %></strong> à suivre sa progression sur Ronaitre.</p>
+<p>Vous ne verrez que ce que cette personne décide de partager — et elle peut révoquer votre accès à tout moment.</p>
+<p><%= link_to "Accepter l'invitation", @accept_url %></p>
+<p style="color:#6b7280;font-size:12px">Si vous ne souhaitez pas cela, ignorez simplement cet e-mail.</p>

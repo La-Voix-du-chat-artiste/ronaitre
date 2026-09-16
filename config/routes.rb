@@ -37,4 +37,28 @@ Rails.application.routes.draw do
     get :export
     delete :destroy_account
   end
+
+  get "aidants", to: "aidants#index"
+  get "helper", to: "helper_dashboard#show", as: :helper_dashboard
+
+  resources :connections, only: %i[index create update destroy]
+  get "invitations/:token", to: "invitations#show", as: :invitation
+  post "invitations/:token", to: "invitations#accept_by_token"
+  post "memberships/:id/accept", to: "invitations#accept", as: :accept_membership
+  post "memberships/:id/decline", to: "invitations#decline", as: :decline_membership
+
+  resources :tracks do
+    member do
+      get :calendar
+      post :pause
+      post :resume
+      post :restart
+      post :close
+    end
+    resources :consumptions, only: %i[create destroy]
+    resources :share_links, only: %i[create destroy], path: "partages"
+  end
+
+  get "c/:token", to: "shared_calendars#show", as: :shared_calendar
+  post "c/:token", to: "shared_calendars#unlock"
 end
