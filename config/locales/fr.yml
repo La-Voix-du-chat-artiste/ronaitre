@@ -344,3 +344,13 @@ fr:
     wrong_password: "Mot de passe incorrect."
     revoked_title: "Partage indisponible"
     revoked_body: "Ce lien a été révoqué ou a expiré."
+  messages:
+    title: "Messagerie"
+    subtitle: "Échangez avec les personnes que vous avez autorisées — ou celles qui vous accompagnent."
+    empty: "Aucune conversation. Autorisez la messagerie pour une connexion dans « Entourage »."
+    with: "Accompagnement %{kind}"
+    back: "Retour"
+    start: "Envoyez le premier message — bienveillant, toujours."
+    placeholder: "Votre message…"
+    send: "Envoyer"
+    invalid: "Message vide ou trop long (2000 caractères max)."

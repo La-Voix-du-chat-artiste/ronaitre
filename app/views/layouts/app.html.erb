@@ -19,7 +19,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-background text-foreground min-h-screen">
+  <body class="bg-background text-foreground min-h-screen" data-current-user-id="<%= Current.user&.id %>">
     <div class="flex min-h-screen">
       <aside class="hidden w-64 flex-col justify-between bg-sidebar text-sidebar-foreground md:flex">
         <div class="px-5 py-6">
@@ -28,6 +28,7 @@
             <%= sidebar_link_to "Mes suivis", dashboard_path, icon: "gauge", active: current_page?(dashboard_path) %>
             <%= sidebar_link_to "Ajouter un suivi", new_track_path, icon: "plus", active: current_page?(new_track_path) %>
             <%= sidebar_link_to "Entourage", connections_path, icon: "users", active: current_page?(connections_path) %>
+            <%= sidebar_link_to unread_messages_label, messages_path, icon: "message", active: current_page?(messages_path) %>
             <% if Current.user.role == "aidant" %>
               <%= sidebar_link_to "Mes accompagnés", helper_dashboard_path, icon: "heart", active: current_page?(helper_dashboard_path) %>
             <% end %>

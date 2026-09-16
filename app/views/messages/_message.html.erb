@@ -1,0 +1,8 @@
+<div id="<%= dom_id(message) %>" class="flex" data-controller="chat-bubble" data-chat-bubble-sender-value="<%= message.sender_id %>">
+  <div class="max-w-[80%] rounded-lg px-4 py-2.5 text-sm bg-muted text-foreground" data-chat-bubble-target="bubble">
+    <p class="whitespace-pre-wrap leading-relaxed"><%= message.body %></p>
+    <p class="counter-digits mt-1 text-right text-[10px] text-muted-foreground">
+      <%= l(message.created_at, format: :short) %>
+    </p>
+  </div>
+</div>

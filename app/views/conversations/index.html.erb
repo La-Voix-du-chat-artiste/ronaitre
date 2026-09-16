@@ -1,0 +1,31 @@
+<% content_for :title, "Messagerie — Ronaitre" %>
+
+<h1 class="text-3xl font-extrabold tracking-tight"><%= t("messages.title") %></h1>
+<p class="mt-2 text-muted-foreground"><%= t("messages.subtitle") %></p>
+
+<% if @conversations.empty? %>
+  <%= render CardComponent.new(html: { class: "mt-8 p-10 text-center text-muted-foreground" }) do %>
+    <%= t("messages.empty") %>
+  <% end %>
+<% else %>
+  <div class="mt-8 space-y-3">
+    <% @conversations.each do |conversation| %>
+      <% other = conversation.other_than(Current.user) %>
+      <% unread = conversation.unread_count_for(Current.user) %>
+      <%= link_to conversation_path(conversation), class: "flex items-center justify-between rounded-lg border border-border bg-card px-5 py-4 shadow-sm transition hover:border-primary/40" do %>
+        <div class="min-w-0">
+          <p class="font-bold"><%= other.display_name.presence || other.email_address %></p>
+          <% if (last = conversation.messages.order(:created_at).last) %>
+            <p class="mt-0.5 truncate text-sm text-muted-foreground"><%= last.body.truncate(80) %></p>
+          <% end %>
+        </div>
+        <div class="flex items-center gap-3">
+          <% if unread.positive? %>
+            <span class="flex h-6 min-w-6 items-center justify-center rounded-full bg-primary px-1.5 text-xs font-bold text-primary-foreground"><%= unread %></span>
+          <% end %>
+          <span class="text-xs text-muted-foreground"><%= t("membership.kinds.#{conversation.membership.kind}") %></span>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

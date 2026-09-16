@@ -1,0 +1,27 @@
+<% content_for :title, "Conversation — Ronaitre" %>
+
+<% other = @conversation.other_than(Current.user) %>
+<div class="mx-auto flex h-[calc(100vh-12rem)] max-w-2xl flex-col">
+  <div class="flex items-center justify-between">
+    <div>
+      <h1 class="text-xl font-extrabold tracking-tight"><%= other.display_name.presence || other.email_address %></h1>
+      <p class="text-xs text-muted-foreground"><%= t("messages.with", kind: t("membership.kinds.#{@conversation.membership.kind}")) %></p>
+    </div>
+    <%= link_to t("messages.back"), messages_path, class: "text-sm font-semibold text-primary hover:underline" %>
+  </div>
+
+  <div class="mt-5 flex-1 space-y-3 overflow-y-auto rounded-lg border border-border bg-card p-5" id="messages">
+    <%= turbo_stream_from [:conversation, @conversation.id] %>
+    <% if @messages.empty? %>
+      <p class="py-10 text-center text-sm text-muted-foreground"><%= t("messages.start") %></p>
+    <% end %>
+    <%= render partial: "messages/message", collection: @messages %>
+  </div>
+
+  <%= form_with url: conversation_messages_path(@conversation), class: "mt-4 flex items-end gap-3" do |form| %>
+    <%= form.text_area :body, rows: 2, required: true, maxlength: 2000,
+                       placeholder: t("messages.placeholder"),
+                       class: "grow rounded-lg border border-input bg-card px-3 py-2 text-sm focus-visible:outline-2 focus-visible:outline-ring" %>
+    <%= form.submit t("messages.send"), class: "inline-flex h-10 items-center rounded-lg bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-sm transition hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-ring" %>
+  <% end %>
+</div>

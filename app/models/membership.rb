@@ -26,6 +26,10 @@ class Membership < ApplicationRecord
 
   def active? = status == "active"
 
+  def messaging_allowed?
+    active? && grants.where(can_message: true).exists?
+  end
+
   private
 
   def ensure_invite_token

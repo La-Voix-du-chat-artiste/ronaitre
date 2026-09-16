@@ -41,6 +41,11 @@ Rails.application.routes.draw do
   get "aidants", to: "aidants#index"
   get "helper", to: "helper_dashboard#show", as: :helper_dashboard
 
+  get "messages", to: "conversations#index", as: :messages
+  resources :conversations, only: %i[show] do
+    resources :messages, only: :create
+  end
+
   resources :connections, only: %i[index create update destroy]
   get "invitations/:token", to: "invitations#show", as: :invitation
   post "invitations/:token", to: "invitations#accept_by_token"

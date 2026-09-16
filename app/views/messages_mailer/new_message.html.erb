@@ -1,0 +1,3 @@
+<p><%= @sender.display_name.presence || "Quelqu'un que vous accompagnez" %> vous a envoyé un message sur Ronaitre :</p>
+<blockquote><%= simple_format(@message.body) %></blockquote>
+<p><%= link_to "Répondre dans Ronaitre", @conversation_url %></p>
