@@ -1,0 +1,6 @@
+<p>Nouvel avis reçu sur Ronaitre :</p>
+<ul>
+  <li><strong>Type :</strong> <%= Feedback.human_attribute_name("kind_#{@feedback.kind}") %></li>
+  <li><strong>E-mail :</strong> <%= @feedback.email.presence || "anonyme" %></li>
+</ul>
+<blockquote><%= simple_format(@feedback.body) %></blockquote>

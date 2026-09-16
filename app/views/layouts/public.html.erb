@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+  <head>
+    <title><%= content_for(:title) || t("app.name") %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="application-name" content="Ronaitre">
+    <meta name="theme-color" content="#128f7e">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+    <%= render "shared/meta_seo" %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="bg-background text-foreground min-h-screen">
+    <%= render "shared/help_banner" %>
+    <%= render "shared/header" %>
+    <main id="contenu">
+      <% if notice %>
+        <div aria-live="polite" class="mx-auto max-w-3xl px-6 pt-6">
+          <p class="rounded-lg border border-primary/30 bg-primary/5 px-4 py-3 text-sm font-medium text-primary" role="status"><%= notice %></p>
+        </div>
+      <% end %>
+      <% if alert %>
+        <div aria-live="polite" class="mx-auto max-w-3xl px-6 pt-6">
+          <p class="rounded-lg border border-destructive/30 bg-destructive/5 px-4 py-3 text-sm font-medium text-destructive" role="alert"><%= alert %></p>
+        </div>
+      <% end %>
+      <%= yield %>
+    </main>
+    <%= render "shared/footer" %>
+  </body>
+</html>

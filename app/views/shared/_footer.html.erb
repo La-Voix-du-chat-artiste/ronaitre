@@ -1,0 +1,41 @@
+<footer class="border-t border-border bg-card">
+  <div class="mx-auto max-w-6xl px-6 py-14">
+    <div class="grid gap-10 md:grid-cols-4">
+      <div>
+        <%= render LogoComponent.new %>
+        <p class="mt-4 max-w-xs text-sm text-muted-foreground">Un compagnon doux et privé pour suivre votre abstinence, jour après jour, entouré de celles et ceux qui vous veulent du bien.</p>
+      </div>
+      <div>
+        <h3 class="text-sm font-bold uppercase tracking-widest text-foreground">Produit</h3>
+        <ul class="mt-4 space-y-2.5 text-sm text-muted-foreground">
+          <li><a href="#fonctionnement" class="hover:text-foreground">Comment ça marche</a></li>
+          <li><a href="#produit" class="hover:text-foreground">Fonctionnalités</a></li>
+          <li><a href="#entourage" class="hover:text-foreground">Aidants &amp; soignants</a></li>
+          <li><a href="#faq" class="hover:text-foreground">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-sm font-bold uppercase tracking-widest text-foreground">Aide &amp; ressources</h3>
+        <ul class="mt-4 space-y-2.5 text-sm text-muted-foreground">
+          <li><a href="tel:3989" class="hover:text-foreground"><%= t("resources.tobacco") %></a></li>
+          <li><a href="tel:0800231313" class="hover:text-foreground"><%= t("resources.drugs") %></a></li>
+          <li><a href="tel:0980980930" class="hover:text-foreground"><%= t("resources.alcohol") %></a></li>
+          <li><a href="#entourage" class="hover:text-foreground"><%= t("resources.csapa") %></a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-sm font-bold uppercase tracking-widest text-foreground">Légal &amp; contact</h3>
+        <ul class="mt-4 space-y-2.5 text-sm text-muted-foreground">
+          <li><%= link_to t("legal.privacy"), confidentialite_path, class: "hover:text-foreground" %></li>
+          <li><%= link_to t("legal.legal_notice"), mentions_legales_path, class: "hover:text-foreground" %></li>
+          <li><%= link_to t("legal.terms"), cgu_path, class: "hover:text-foreground" %></li>
+          <li><a href="mailto:contact@ronaitre.example" class="hover:text-foreground">contact@ronaitre.example</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-12 border-t border-border pt-6">
+      <p class="text-xs leading-relaxed text-muted-foreground">© <%= Time.current.year %> Ronaitre. <%= t("landing.footer.rights") %> <%= t("landing.footer.disclaimer") %></p>
+      <p class="mt-2 text-xs"><%= link_to t("feedback.link"), avis_path, class: "font-semibold text-primary hover:underline" %></p>
+    </div>
+  </div>
+</footer>

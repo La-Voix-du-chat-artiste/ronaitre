@@ -1,0 +1,35 @@
+<% content_for :title, "#{t('feedback.link')} — Ronaitre" %>
+
+<section class="mx-auto max-w-2xl px-6 py-16">
+  <h1 class="text-4xl font-extrabold tracking-tight"><%= t("feedback.title") %></h1>
+  <p class="mt-3 text-muted-foreground"><%= t("feedback.subtitle") %></p>
+
+  <%= render CardComponent.new(html: { class: "mt-8 p-7" }) do %>
+    <%= form_with model: @feedback, url: avis_path, method: :post, class: "space-y-5" do |f| %>
+      <div>
+        <%= render FieldComponent.new(label: t("feedback.kind"), for_attr: "feedback_kind") do %>
+          <%= f.select :kind, Feedback::KINDS.map { |k| [Feedback.human_attribute_name("kind_#{k}"), k] },
+                       {}, id: "feedback_kind",
+                       class: "h-10 w-full rounded-lg border border-input bg-card px-3 text-sm focus-visible:outline-2 focus-visible:outline-ring" %>
+        <% end %>
+      </div>
+      <div>
+        <%= render FieldComponent.new(label: t("feedback.email"), for_attr: "feedback_email", hint: t("feedback.email_hint")) do %>
+          <%= f.email_field :email, id: "feedback_email", class: "h-10 w-full rounded-lg border border-input bg-card px-3 text-sm focus-visible:outline-2 focus-visible:outline-ring" %>
+        <% end %>
+      </div>
+      <div>
+        <%= render FieldComponent.new(label: t("feedback.body"), for_attr: "feedback_body") do %>
+          <%= f.text_area :body, id: "feedback_body", rows: 5, required: true,
+                          class: "w-full rounded-lg border border-input bg-card px-3 py-2 text-sm focus-visible:outline-2 focus-visible:outline-ring" %>
+        <% end %>
+      </div>
+      <% if @feedback.errors.any? %>
+        <div role="alert" class="rounded-lg border border-destructive/30 bg-destructive/5 p-3 text-sm text-destructive">
+          <%= @feedback.errors.full_messages.to_sentence %>
+        </div>
+      <% end %>
+      <%= f.submit t("feedback.submit"), class: "inline-flex h-11 items-center justify-center rounded-lg bg-primary px-6 font-semibold text-primary-foreground shadow-sm transition hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-ring" %>
+    <% end %>
+  <% end %>
+</section>

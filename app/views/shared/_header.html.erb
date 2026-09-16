@@ -1,0 +1,16 @@
+<header class="sticky top-0 z-40 border-b border-border bg-card/95 backdrop-blur">
+  <nav class="mx-auto flex h-16 max-w-6xl items-center justify-between px-6" aria-label="Navigation principale">
+    <%= render LogoComponent.new %>
+    <div class="hidden items-center gap-7 text-sm font-medium text-muted-foreground md:flex">
+      <a href="#produit" class="transition hover:text-foreground">Le produit</a>
+      <a href="#fonctionnement" class="transition hover:text-foreground">Comment ça marche</a>
+      <a href="#entourage" class="transition hover:text-foreground">Entourage</a>
+      <a href="#temoignages" class="transition hover:text-foreground">Témoignages</a>
+      <a href="#faq" class="transition hover:text-foreground">FAQ</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <%= link_to t("nav.sign_in"), auth_path, class: "hidden text-sm font-semibold text-foreground hover:text-primary sm:block" %>
+      <%= render(ButtonComponent.new(variant: :inverted, size: :sm, href: signup_path)) { t("nav.sign_up") } %>
+    </div>
+  </nav>
+</header>

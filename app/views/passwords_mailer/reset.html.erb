@@ -1,0 +1,4 @@
+<p>Bonjour,</p>
+<p>Vous pouvez réinitialiser votre mot de passe Ronaitre en suivant ce lien :</p>
+<p><%= link_to "Réinitialiser mon mot de passe", edit_password_url(@user.password_reset_token) %></p>
+<p>Ce lien expirera dans <%= distance_of_time_in_words(0, @user.password_reset_token_expires_in) %>. Si vous n'êtes pas à l'origine de cette demande, ignorez cet e-mail — votre mot de passe reste inchangé.</p>

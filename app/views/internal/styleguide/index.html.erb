@@ -17,12 +17,12 @@
   <section class="mt-10">
     <h2 class="mb-3 text-xl font-bold">Boutons</h2>
     <div class="flex flex-wrap items-center gap-3">
-      <%= render ButtonComponent.new(variant: :primary, size: :lg) { "Commencer gratuitement" } %>
-      <%= render ButtonComponent.new(variant: :primary) { "Commencer gratuitement" } %>
-      <%= render ButtonComponent.new(variant: :inverted) { "Action primaire (in-app)" } %>
-      <%= render ButtonComponent.new(variant: :outline) { "J'ai déjà un compte" } %>
-      <%= render ButtonComponent.new(variant: :outline_muted) { "Se connecter" } %>
-      <%= render ButtonComponent.new(variant: :ghost) { "Annuler" } %>
+      <%= render(ButtonComponent.new(variant: :primary, size: :lg)) { "Commencer gratuitement" } %>
+      <%= render(ButtonComponent.new(variant: :primary)) { "Commencer gratuitement" } %>
+      <%= render(ButtonComponent.new(variant: :inverted)) { "Action primaire (in-app)" } %>
+      <%= render(ButtonComponent.new(variant: :outline)) { "J'ai déjà un compte" } %>
+      <%= render(ButtonComponent.new(variant: :outline_muted)) { "Se connecter" } %>
+      <%= render(ButtonComponent.new(variant: :ghost)) { "Annuler" } %>
     </div>
   </section>
 
@@ -30,11 +30,11 @@
     <h2 class="mb-3 text-xl font-bold">Badges</h2>
     <div class="flex flex-wrap items-center gap-3">
       <%= render BadgeComponent.new { "J+47" } %>
-      <%= render BadgeComponent.new(variant: :secondary) { "Record personnel" } %>
-      <%= render BadgeComponent.new(variant: :mint) { "Suivi actif" } %>
-      <%= render BadgeComponent.new(variant: :muted) { "En pause" } %>
-      <%= render BadgeComponent.new(variant: :white) { "23 proches" } %>
-      <%= render BadgeComponent.new(variant: :destructive) { "Écart" } %>
+      <%= render(BadgeComponent.new(variant: :secondary)) { "Record personnel" } %>
+      <%= render(BadgeComponent.new(variant: :mint)) { "Suivi actif" } %>
+      <%= render(BadgeComponent.new(variant: :muted)) { "En pause" } %>
+      <%= render(BadgeComponent.new(variant: :white)) { "23 proches" } %>
+      <%= render(BadgeComponent.new(variant: :destructive)) { "Écart" } %>
     </div>
   </section>
 
@@ -76,11 +76,11 @@
     <h2 class="mb-3 text-xl font-bold">Logo & hero (skin du screenshot)</h2>
     <%= render LogoComponent.new %>
     <div class="mt-4 rounded-lg bg-primary p-10">
-      <%= render BadgeComponent.new(variant: :white) { "Reprenez le contrôle" } %>
+      <%= render(BadgeComponent.new(variant: :white)) { "Reprenez le contrôle" } %>
       <h3 class="mt-4 text-5xl font-extrabold tracking-tight text-white sm:text-6xl">Suivez votre progrès, jour après jour.</h3>
       <div class="mt-6 flex gap-3">
-        <%= render ButtonComponent.new(variant: :primary, size: :lg, href: "#") { "Commencer gratuitement" } %>
-        <%= render ButtonComponent.new(variant: :outline, size: :lg, href: "#") { "J'ai déjà un compte" } %>
+        <%= render(ButtonComponent.new(variant: :primary, size: :lg, href: "#")) { "Commencer gratuitement" } %>
+        <%= render(ButtonComponent.new(variant: :outline, size: :lg, href: "#")) { "J'ai déjà un compte" } %>
       </div>
     </div>
   </section>
