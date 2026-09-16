@@ -1,0 +1,169 @@
+<% content_for :title, "#{@track.name} — Ronaitre" %>
+
+<div class="flex flex-wrap items-start justify-between gap-4">
+  <div class="flex items-center gap-3">
+    <span class="h-4 w-4 rounded-full <%= track_color_class(@track.color) %>"></span>
+    <h1 class="text-3xl font-extrabold tracking-tight"><%= @track.name %></h1>
+    <% if @track.active? %>
+      <%= render(BadgeComponent.new(variant: :mint)) { t("tracks.active") } %>
+    <% elsif @track.paused? %>
+      <%= render(BadgeComponent.new(variant: :muted)) { t("tracks.paused_badge") } %>
+    <% else %>
+      <%= render(BadgeComponent.new(variant: :muted)) { t("tracks.closed_badge") } %>
+    <% end %>
+  </div>
+  <div class="flex flex-wrap items-center gap-2">
+    <%= link_to t("tracks.edit"), edit_track_path(@track), class: "text-sm font-semibold text-primary hover:underline" %>
+    <% if @track.active? %>
+      <%= button_to t("tracks.pause"), pause_track_path(@track), method: :post, class: "text-sm text-muted-foreground hover:text-foreground", form: { class: "inline" } %>
+    <% elsif @track.paused? %>
+      <%= button_to t("tracks.resume"), resume_track_path(@track), method: :post, class: "text-sm font-semibold text-primary hover:underline", form: { class: "inline" } %>
+    <% end %>
+  </div>
+</div>
+
+<div class="mt-8 grid gap-5 lg:grid-cols-3">
+  <%# Compteur %>
+  <%= render CardComponent.new(html: { class: "p-7 lg:col-span-2" }) do %>
+    <div data-controller="live-counter" data-live-counter-elapsed-value="<%= @track.elapsed_seconds %>">
+      <p class="text-sm font-medium text-muted-foreground"><%= t("tracks.your_progress") %></p>
+      <p class="mt-2 flex items-baseline gap-2">
+        <span data-live-counter-target="days" class="text-7xl font-extrabold leading-none tracking-tight text-primary"><%= @track.elapsed_days %></span>
+        <span data-live-counter-target="days-unit" class="text-2xl font-bold text-muted-foreground"><%= t("time.units.days", count: @track.elapsed_days) %></span>
+        <% if @track.elapsed_days >= 30 %>
+          <span class="ml-3 text-lg text-muted-foreground">soit <span data-live-counter-target="months" class="font-bold text-foreground"><%= @track.elapsed_days / 30 %></span> <%= t("time.units.months") %></span>
+        <% end %>
+      </p>
+      <p data-live-counter-target="time" class="counter-digits mt-3 text-4xl text-foreground"><%= counter_time(@track.elapsed_seconds) %></p>
+      <% if @track.personal_best_seconds > 0 %>
+        <p class="mt-4 text-sm text-muted-foreground">
+          <%= render(BadgeComponent.new(variant: :secondary)) { t("tracks.personal_best", days: @track.personal_best_seconds / 86_400) } %>
+        </p>
+      <% end %>
+      <% if (next_ms = @track.next_milestone) && @track.active? %>
+        <% remaining = [next_ms.seconds - @track.elapsed_seconds, 0].max %>
+        <div class="mt-5">
+          <div class="flex items-center justify-between text-sm">
+            <span class="font-medium">Prochaine étape : <strong><%= next_ms.label %></strong></span>
+            <span class="counter-digits text-muted-foreground"><%= t("tracks.in_days", days: remaining / 86_400) %></span>
+          </div>
+          <div class="mt-1.5 h-2 w-full overflow-hidden rounded-full bg-muted">
+            <div class="h-full rounded-full bg-primary" style="width: <%= [(@track.elapsed_seconds * 100.0 / next_ms.seconds), 100].min.round(1) %>%"></div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%# Étapes %>
+  <%= render CardComponent.new(html: { class: "p-7" }) do %>
+    <h2 class="text-sm font-bold uppercase tracking-widest text-muted-foreground"><%= t("tracks.milestones") %></h2>
+    <ul class="mt-4 space-y-2.5 text-sm">
+      <% @track.milestones.order(:seconds).each do |milestone| %>
+        <li class="flex items-center justify-between gap-3">
+          <span class="flex items-center gap-2">
+            <% if milestone.reached_at %>
+              <span class="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">✓</span>
+            <% else %>
+              <span class="flex h-5 w-5 items-center justify-center rounded-full border border-border"></span>
+            <% end %>
+            <span class="<%= milestone.reached_at ? "font-semibold" : "text-muted-foreground" %>"><%= milestone.label %></span>
+          </span>
+          <% if milestone.reached_at %>
+            <span class="counter-digits text-xs text-muted-foreground"><%= l(milestone.reached_at.to_date, format: :long) %></span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
+<%# Calendrier %>
+<%= render CardComponent.new(html: { class: "mt-5 p-7" }) do %>
+  <%= turbo_frame_tag "calendar", src: calendar_track_path(@track, ym: Date.current.strftime("%Y-%m")), loading: "lazy" do %>
+    <p class="py-8 text-center text-sm text-muted-foreground">Chargement…</p>
+  <% end %>
+<% end %>
+
+<%# Consommations %>
+<div class="mt-5 grid gap-5 lg:grid-cols-3">
+  <%= render CardComponent.new(html: { class: "p-7" }) do %>
+    <h2 class="font-bold"><%= t("tracks.log_consumption") %></h2>
+    <p class="mt-1 text-sm text-muted-foreground"><%= t("consumptions.reassurance") %></p>
+    <%= form_with model: [@track, @consumption], class: "mt-5 space-y-4" do |form| %>
+      <div>
+        <%= render FieldComponent.new(label: t("consumptions.when"), for_attr: "consumption_occurred_at") do %>
+          <%= form.datetime_local_field :occurred_at, id: "consumption_occurred_at", required: true,
+                                        value: Time.current.strftime("%Y-%m-%dT%H:%M"),
+                                        class: "h-10 w-full rounded-lg border border-input bg-card px-3 text-sm focus-visible:outline-2 focus-visible:outline-ring" %>
+        <% end %>
+      </div>
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <%= render FieldComponent.new(label: t("consumptions.quantity"), for_attr: "consumption_quantity") do %>
+            <%= form.number_field :quantity, id: "consumption_quantity", step: "0.5", min: "0",
+                                  class: "h-10 w-full rounded-lg border border-input bg-card px-3 text-sm focus-visible:outline-2 focus-visible:outline-ring" %>
+          <% end %>
+        </div>
+        <div>
+          <%= render FieldComponent.new(label: t("consumptions.unit"), for_attr: "consumption_unit") do %>
+            <%= form.text_field :unit, id: "consumption_unit", value: @track.preset&.unit_word,
+                                class: "h-10 w-full rounded-lg border border-input bg-card px-3 text-sm focus-visible:outline-2 focus-visible:outline-ring" %>
+          <% end %>
+        </div>
+      </div>
+      <div>
+        <%= render FieldComponent.new(label: t("consumptions.note"), for_attr: "consumption_note") do %>
+          <%= form.text_area :note, id: "consumption_note", rows: 2, maxlength: 500,
+                             class: "w-full rounded-lg border border-input bg-card px-3 py-2 text-sm focus-visible:outline-2 focus-visible:outline-ring" %>
+        <% end %>
+      </div>
+      <%= form.submit t("consumptions.submit"), class: "inline-flex h-10 w-full items-center justify-center rounded-lg bg-secondary px-5 font-semibold text-secondary-foreground shadow-sm transition hover:brightness-95 focus-visible:outline-2 focus-visible:outline-ring" %>
+    <% end %>
+  <% end %>
+
+  <%= render CardComponent.new(html: { class: "p-7 lg:col-span-2" }) do %>
+    <h2 class="font-bold"><%= t("tracks.history") %></h2>
+    <% if @recent_consumptions.empty? %>
+      <p class="mt-3 text-sm text-muted-foreground"><%= t("consumptions.empty") %></p>
+    <% else %>
+      <ul class="mt-4 divide-y divide-border text-sm">
+        <% @recent_consumptions.each do |consumption| %>
+          <li class="flex items-center justify-between gap-3 py-2.5">
+            <div>
+              <p class="font-medium">
+                <%= l(consumption.occurred_at, format: :short) %>
+                <% if consumption.quantity %>
+                  · <%= format("%g", consumption.quantity) %> <%= consumption.unit %>
+                <% end %>
+              </p>
+              <% if consumption.note.present? %>
+                <p class="mt-0.5 text-muted-foreground"><%= consumption.note %></p>
+              <% end %>
+            </div>
+            <%= button_to t("consumptions.delete"), track_consumption_path(@track, consumption), method: :delete,
+                          class: "text-xs text-muted-foreground hover:text-destructive", form: { class: "inline" } %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+</div>
+
+<%# Zone de décision %>
+<%= render CardComponent.new(html: { class: "mt-5 border-destructive/20 p-7" }) do %>
+  <h2 class="font-bold"><%= t("tracks.decision_zone") %></h2>
+  <p class="mt-1 text-sm text-muted-foreground"><%= t("tracks.decision_help") %></p>
+  <div class="mt-4 flex flex-wrap gap-3">
+    <% if @track.active? || @track.paused? %>
+      <%= button_to t("tracks.restart"), restart_track_path(@track), method: :post,
+                    data: { turbo_confirm: t("tracks.restart_confirm") },
+                    class: "inline-flex h-10 items-center rounded-lg border border-border px-4 text-sm font-semibold hover:bg-muted", form: { class: "inline" } %>
+    <% end %>
+    <% unless @track.closed? %>
+      <%= button_to t("tracks.close"), close_track_path(@track), method: :post,
+                    data: { turbo_confirm: t("tracks.close_confirm") },
+                    class: "inline-flex h-10 items-center rounded-lg border border-destructive/40 px-4 text-sm font-semibold text-destructive hover:bg-destructive/5", form: { class: "inline" } %>
+    <% end %>
+  </div>
+<% end %>

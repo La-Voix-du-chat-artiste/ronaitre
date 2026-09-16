@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["days", "time"]
+  static targets = ["days", "time", "months", "daysUnit"]
   static values = { elapsed: Number }
 
   connect() {
@@ -27,6 +27,18 @@ export default class extends Controller {
 
     this.daysTarget.textContent = days.toLocaleString("fr-FR")
     this.timeTarget.textContent = `${hours}:${minutes}:${seconds}`
+
+    if (this.hasMonthsTarget) {
+      this.monthsTarget.textContent = Math.floor(days / 30).toLocaleString("fr-FR")
+    }
+    if (this.hasDaysUnitTarget) {
+      this.daysUnitTarget.textContent = this.pluralizeDays(days)
+    }
+  }
+
+  pluralizeDays(days) {
+    if (window.I18nDaysUnit) return window.I18nDaysUnit(days)
+    return days > 1 ? "jours" : "jour"
   }
 
   reducedMotion() {

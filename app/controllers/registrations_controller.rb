@@ -9,7 +9,7 @@ class RegistrationsController < ApplicationController
 
     if @user.save
       start_new_session_for @user
-      redirect_to root_path, notice: t("auth.welcome")
+      redirect_to dashboard_path, notice: t("auth.welcome")
     else
       redirect_to signup_path, alert: @user.errors.full_messages.to_sentence
     end

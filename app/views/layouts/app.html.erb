@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+  <head>
+    <title><%= content_for(:title) || t("app.name") %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="application-name" content="Ronaitre">
+    <meta name="theme-color" content="#128f7e">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+    <%= render "shared/meta_seo" %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="bg-background text-foreground min-h-screen">
+    <div class="flex min-h-screen">
+      <aside class="hidden w-64 flex-col justify-between bg-sidebar text-sidebar-foreground md:flex">
+        <div class="px-5 py-6">
+          <%= render LogoComponent.new(dark: true) %>
+          <nav class="mt-10 space-y-1 text-sm" aria-label="Navigation de l'application">
+            <%= sidebar_link_to "Mes suivis", dashboard_path, icon: "gauge", active: current_page?(dashboard_path) %>
+            <%= sidebar_link_to "Ajouter un suivi", new_track_path, icon: "plus", active: current_page?(new_track_path) %>
+            <%= sidebar_link_to "Réglages", settings_path, icon: "settings", active: current_page?(settings_path) %>
+          </nav>
+        </div>
+        <div class="border-t border-sidebar-border px-5 py-4 text-xs">
+          <p class="truncate font-medium" title="<%= Current.user.email_address %>"><%= Current.user.email_address %></p>
+          <%= button_to t("nav.sign_out"), session_path, method: :delete, class: "mt-2 font-semibold text-sidebar-foreground/70 hover:text-white", form: { class: "inline" } %>
+        </div>
+      </aside>
+
+      <div class="flex min-w-0 flex-1 flex-col">
+        <header class="flex items-center justify-between border-b border-border bg-card px-5 py-3 md:hidden">
+          <%= render LogoComponent.new(href: dashboard_path) %>
+          <div class="flex items-center gap-3 text-sm">
+            <%= link_to t("nav.sign_out"), session_path, data: { turbo_method: :delete }, class: "text-muted-foreground" %>
+          </div>
+        </header>
+
+        <main id="contenu" class="mx-auto w-full max-w-5xl flex-1 px-5 py-8">
+          <% if notice %>
+            <p class="mb-5 rounded-lg border border-primary/30 bg-primary/5 px-4 py-3 text-sm font-medium text-primary" role="status"><%= notice %></p>
+          <% end %>
+          <% if alert %>
+            <p class="mb-5 rounded-lg border border-destructive/30 bg-destructive/5 px-4 py-3 text-sm font-medium text-destructive" role="alert"><%= alert %></p>
+          <% end %>
+          <%= yield %>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

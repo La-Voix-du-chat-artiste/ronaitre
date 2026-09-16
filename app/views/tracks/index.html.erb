@@ -1,0 +1,56 @@
+<% content_for :title, "Mes suivis — Ronaitre" %>
+
+<div class="flex items-center justify-between">
+  <h1 class="text-3xl font-extrabold tracking-tight">Mes suivis</h1>
+  <%= render(ButtonComponent.new(variant: :inverted, size: :sm, href: new_track_path)) { "+ Nouveau suivi" } %>
+</div>
+
+<% if @active_tracks.empty? && @other_tracks.empty? %>
+  <%= render CardComponent.new(html: { class: "mt-8 p-10 text-center" }) do %>
+    <h2 class="text-xl font-bold"><%= t("onboarding.title") %></h2>
+    <p class="mx-auto mt-2 max-w-md text-muted-foreground"><%= t("onboarding.subtitle") %></p>
+    <div class="mt-6">
+      <%= render(ButtonComponent.new(variant: :primary, size: :lg, href: new_track_path)) { t("onboarding.cta") } %>
+    </div>
+    <p class="mt-4 text-xs text-muted-foreground"><%= t("onboarding.reassurance") %></p>
+  <% end %>
+<% else %>
+  <div class="mt-8 grid gap-5 sm:grid-cols-2">
+    <% @active_tracks.each do |track| %>
+      <%= link_to track_path(track), class: "block rounded-lg border border-border bg-card p-6 shadow-sm transition hover:border-primary/40 hover:shadow" do %>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <span class="h-3 w-3 rounded-full <%= track_color_class(track.color) %>"></span>
+            <span class="font-bold"><%= track.name %></span>
+          </div>
+          <%= render(BadgeComponent.new(variant: :mint)) { t("tracks.active") } %>
+        </div>
+        <div class="mt-4" data-controller="live-counter" data-live-counter-elapsed-value="<%= track.elapsed_seconds %>">
+          <p class="text-muted-foreground"><span data-live-counter-target="days"><%= track.elapsed_days %></span>&nbsp;<span data-live-counter-target="days-unit"><%= t("time.units.days", count: track.elapsed_days) %></span></p>
+          <p data-live-counter-target="time" class="counter-digits mt-1 text-2xl text-foreground"><%= counter_time(track.elapsed_seconds) %></p>
+          <% if (next_ms = track.next_milestone) %>
+            <% remaining = [next_ms.seconds - track.elapsed_seconds, 0].max %>
+            <p class="mt-3 text-sm text-muted-foreground"><%= next_ms.label %> <%= t("tracks.in_days", days: remaining / 86_400) %></p>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <% if @other_tracks.any? %>
+    <h2 class="mt-12 text-sm font-bold uppercase tracking-widest text-muted-foreground"><%= t("tracks.archived") %></h2>
+    <div class="mt-4 space-y-3">
+      <% @other_tracks.each do |track| %>
+        <%= link_to track_path(track), class: "flex items-center justify-between rounded-lg border border-border bg-card px-5 py-3.5 text-sm shadow-sm transition hover:border-primary/40" do %>
+          <span class="flex items-center gap-2.5 font-medium">
+            <span class="h-2.5 w-2.5 rounded-full <%= track_color_class(track.color) %>"></span>
+            <%= track.name %>
+          </span>
+          <span class="flex items-center gap-3">
+            <span class="counter-digits text-muted-foreground">J+<%= track.elapsed_days %> · <%= track.status_human %></span>
+          </span>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

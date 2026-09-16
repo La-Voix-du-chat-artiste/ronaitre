@@ -1,0 +1,64 @@
+<% content_for :title, "Nouveau suivi — Ronaitre" %>
+
+<div class="mx-auto max-w-xl">
+  <h1 class="text-3xl font-extrabold tracking-tight"><%= t("tracks.new_title") %></h1>
+  <p class="mt-2 text-muted-foreground"><%= t("tracks.new_subtitle") %></p>
+
+  <%= render CardComponent.new(html: { class: "mt-8 p-7" }) do %>
+    <%= form_with model: @track, class: "space-y-5" do |form| %>
+      <%= form.hidden_field :preset_id, value: @track.preset_id, data: { track_preset_target: "presetId" } %>
+
+      <fieldset>
+        <legend class="mb-2 text-sm font-medium"><%= t("tracks.preset_label") %></legend>
+        <div class="flex flex-wrap gap-2" data-controller="track-preset">
+          <% @presets.each do |preset| %>
+            <button type="button"
+                    data-action="track-preset#select"
+                    data-track-preset-slug-value="<%= preset.slug %>"
+                    data-track-preset-id-value="<%= preset.id %>"
+                    data-track-preset-name-value="<%= preset.name %>"
+                    data-track-preset-color-value="<%= preset.color %>"
+                    data-track-preset-target="chip"
+                    class="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium transition hover:border-primary/50 data-[selected=true]:border-primary data-[selected=true]:bg-primary data-[selected=true]:text-primary-foreground">
+              <%= preset.name %>
+            </button>
+          <% end %>
+          <button type="button"
+                  data-action="track-preset#select"
+                  data-track-preset-slug-value="custom"
+                  data-track-preset-target="chip"
+                  class="rounded-full border border-dashed border-border bg-card px-4 py-2 text-sm font-medium text-muted-foreground transition hover:border-primary/50 data-[selected=true]:border-primary data-[selected=true]:bg-primary data-[selected=true]:text-primary-foreground">
+            <%= t("tracks.custom_preset") %>
+          </button>
+        </div>
+      </fieldset>
+
+      <div>
+        <%= render FieldComponent.new(label: t("tracks.name_label"), for_attr: "track_name") do %>
+          <%= form.text_field :name, id: "track_name", required: true, maxlength: 60,
+                              value: @track.name,
+                              class: "h-10 w-full rounded-lg border border-input bg-card px-3 text-sm focus-visible:outline-2 focus-visible:outline-ring" %>
+        <% end %>
+      </div>
+
+      <div data-track-preset-target="colorField" class="hidden">
+        <%= render FieldComponent.new(label: t("tracks.color_label"), for_attr: "track_color") do %>
+          <%= form.select :color, [["Vert", "primary"], ["Corail", "salmon"], ["Menthe", "mint"], ["Bleu", "periwinkle"], ["Lavande", "periwinkle-light"], ["Rouge", "chart-1"], ["Marine", "chart-3"]],
+                          {}, id: "track_color",
+                          class: "h-10 w-full rounded-lg border border-input bg-card px-3 text-sm focus-visible:outline-2 focus-visible:outline-ring" %>
+        <% end %>
+      </div>
+
+      <div>
+        <%= render FieldComponent.new(label: t("tracks.quit_at_label"), for_attr: "track_quit_at", hint: t("tracks.quit_at_hint")) do %>
+          <%= form.datetime_local_field :quit_at, id: "track_quit_at", required: true,
+                                        value: @track.quit_at&.strftime("%Y-%m-%dT%H:%M"),
+                                        class: "h-10 w-full rounded-lg border border-input bg-card px-3 text-sm focus-visible:outline-2 focus-visible:outline-ring" %>
+        <% end %>
+      </div>
+
+      <%= form.submit t("tracks.create_submit"), class: "inline-flex h-11 w-full items-center justify-center rounded-lg bg-primary px-6 font-semibold text-primary-foreground shadow-sm transition hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-ring" %>
+      <p class="text-center text-xs text-muted-foreground"><%= t("onboarding.reassurance") %></p>
+    <% end %>
+  <% end %>
+</div>
