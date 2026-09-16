@@ -5,6 +5,7 @@ class MembershipsMailer < ApplicationMailer
     @membership = membership
     @owner = membership.owner
     @accept_url = invitation_url(membership.invite_token)
-    mail subject: "Ronaitre — #{@owner.display_name || 'Un proche'} vous invite à suivre sa progression", to: membership.member.email_address
+    recipient = membership.member&.email_address || membership.invited_email
+    mail subject: "Ronaitre — #{@owner.display_name.presence || 'Un proche'} vous invite à suivre sa progression", to: recipient
   end
 end

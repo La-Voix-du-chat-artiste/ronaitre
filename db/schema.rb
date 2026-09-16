@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_16_150000) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_16_160002) do
+  create_table "chat_messages", force: :cascade do |t|
+    t.integer "chat_thread_id", null: false
+    t.text "content", null: false
+    t.datetime "created_at", null: false
+    t.string "role", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_thread_id", "created_at"], name: "index_chat_messages_on_chat_thread_id_and_created_at"
+    t.index ["chat_thread_id"], name: "index_chat_messages_on_chat_thread_id"
+  end
+
+  create_table "chat_threads", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_chat_threads_on_user_id"
+  end
+
   create_table "consumptions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "note"
@@ -34,6 +51,21 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_16_150000) do
     t.index ["a_id"], name: "index_conversations_on_a_id"
     t.index ["b_id"], name: "index_conversations_on_b_id"
     t.index ["membership_id"], name: "index_conversations_on_membership_id"
+  end
+
+  create_table "csapa_facilities", force: :cascade do |t|
+    t.string "address"
+    t.string "city"
+    t.datetime "created_at", null: false
+    t.string "dept"
+    t.string "hours"
+    t.string "kind"
+    t.string "name", null: false
+    t.string "phone"
+    t.string "source", default: "seed"
+    t.datetime "updated_at", null: false
+    t.string "zip"
+    t.index ["city", "dept"], name: "index_csapa_facilities_on_city_and_dept"
   end
 
   create_table "feedbacks", force: :cascade do |t|
@@ -61,12 +93,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_16_150000) do
   create_table "memberships", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "invite_token"
+    t.string "invited_email"
     t.string "kind", default: "proche", null: false
-    t.integer "member_id", null: false
+    t.integer "member_id"
     t.integer "owner_id", null: false
     t.string "status", default: "invited", null: false
     t.datetime "updated_at", null: false
     t.index ["invite_token"], name: "index_memberships_on_invite_token", unique: true
+    t.index ["invited_email"], name: "index_memberships_on_invited_email"
     t.index ["member_id"], name: "index_memberships_on_member_id"
     t.index ["owner_id", "member_id", "kind"], name: "index_memberships_on_owner_id_and_member_id_and_kind", unique: true, where: "status != 'revoked'"
     t.index ["owner_id"], name: "index_memberships_on_owner_id"
@@ -96,6 +130,29 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_16_150000) do
     t.datetime "updated_at", null: false
     t.index ["track_id", "seconds"], name: "index_milestones_on_track_id_and_seconds", unique: true
     t.index ["track_id"], name: "index_milestones_on_track_id"
+  end
+
+  create_table "notification_prefs", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.boolean "email", default: true, null: false
+    t.string "event", null: false
+    t.boolean "in_app", default: true, null: false
+    t.boolean "sms", default: false, null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id", "event"], name: "index_notification_prefs_on_user_id_and_event", unique: true
+    t.index ["user_id"], name: "index_notification_prefs_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "event", null: false
+    t.json "payload", default: {}
+    t.datetime "read_at"
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id", "read_at"], name: "index_notifications_on_user_id_and_read_at"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "presets", force: :cascade do |t|
@@ -128,7 +185,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_16_150000) do
     t.string "password_digest"
     t.datetime "revoked_at"
     t.string "token", null: false
-    t.integer "track_id", null: false
+    t.integer "track_id"
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
     t.integer "views_count", default: 0, null: false
@@ -169,6 +226,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_16_150000) do
     t.index ["role"], name: "index_users_on_role"
   end
 
+  add_foreign_key "chat_messages", "chat_threads"
+  add_foreign_key "chat_threads", "users"
   add_foreign_key "consumptions", "tracks"
   add_foreign_key "conversations", "memberships"
   add_foreign_key "conversations", "users", column: "a_id"
@@ -181,6 +240,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_16_150000) do
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users", column: "sender_id"
   add_foreign_key "milestones", "tracks"
+  add_foreign_key "notification_prefs", "users"
+  add_foreign_key "notifications", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "share_links", "tracks"
   add_foreign_key "share_links", "users"

@@ -15,6 +15,20 @@
         <%= render CardComponent.new(html: { class: "p-6" }) do %>
           <p class="font-bold"><%= aidant.display_name.presence || t("aidants.anonymous_name") %></p>
           <p class="mt-1.5 text-sm leading-relaxed text-muted-foreground"><%= aidant.bio.presence || t("aidants.no_bio") %></p>
+          <div class="mt-4">
+            <% if authenticated? %>
+              <% if Current.user.id == aidant.id %>
+                <span class="text-xs text-muted-foreground"><%= t("aidants.its_you") %></span>
+              <% elsif @requested_ids.include?(aidant.id) %>
+                <%= render BadgeComponent.new(variant: :muted) { t("aidants.request_pending") } %>
+              <% else %>
+                <%= button_to t("aidants.request_help"), request_aidant_path(aidant), method: :post,
+                              class: "inline-flex h-9 items-center rounded-lg bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-primary/90" %>
+              <% end %>
+            <% else %>
+              <%= link_to t("aidants.signup_to_request"), signup_path, class: "text-sm font-semibold text-primary hover:underline" %>
+            <% end %>
+          </div>
         <% end %>
       <% end %>
     </div>

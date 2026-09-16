@@ -1,0 +1,31 @@
+<% content_for :title, "Compagnon de soutien — Ronaitre" %>
+
+<div class="mx-auto flex h-[calc(100vh-12rem)] max-w-2xl flex-col">
+  <div class="flex items-center justify-between">
+    <div>
+      <h1 class="text-xl font-extrabold tracking-tight"><%= t("chat.title") %></h1>
+      <p class="text-xs text-muted-foreground"><%= t("chat.subtitle") %></p>
+    </div>
+    <%= button_to t("chat.delete_history"), chat_history_path, method: :delete,
+                  data: { turbo_confirm: t("chat.delete_confirm") },
+                  class: "text-sm font-semibold text-muted-foreground hover:text-destructive", form: { class: "inline" } %>
+  </div>
+
+  <%= render partial: "chat/crisis_encart" %>
+
+  <div class="mt-4 flex-1 space-y-3 overflow-y-auto rounded-lg border border-border bg-card p-5" id="chat-messages">
+    <%= turbo_stream_from [:chat, @thread.id] %>
+    <% if @messages.empty? %>
+      <p class="py-10 text-center text-sm text-muted-foreground"><%= t("chat.start") %></p>
+    <% end %>
+    <%= render partial: "chat/message", collection: @messages %>
+  </div>
+
+  <%= form_with model: [@thread, ChatMessage.new], url: chat_say_path, class: "mt-4 flex items-end gap-3" do |form| %>
+    <%= form.text_area :content, rows: 2, required: true, maxlength: 4000,
+                       placeholder: t("chat.placeholder"),
+                       class: "grow rounded-lg border border-input bg-card px-3 py-2 text-sm focus-visible:outline-2 focus-visible:outline-ring" %>
+    <%= form.submit t("chat.send"), class: "inline-flex h-10 items-center rounded-lg bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-sm transition hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-ring" %>
+  <% end %>
+  <p class="mt-2 text-center text-xs text-muted-foreground"><%= t("chat.disclaimer") %></p>
+</div>

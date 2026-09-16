@@ -12,8 +12,11 @@ class SharedCalendarsController < ActionController::Base
     end
 
     @share.register_view!
+    if params[:ym].blank?
+      Notification.deliver!(@share.user, "share_viewed", { message: I18n.t("notifications.share_viewed") })
+    end
+
     @month = parse_month
-    @readonly = true
     render :show
   end
 

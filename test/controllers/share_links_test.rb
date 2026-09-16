@@ -9,7 +9,7 @@ class ShareLinksTest < ActionDispatch::IntegrationTest
   end
 
   test "creates a public link and views are counted" do
-    post track_share_links_path(@track), params: { password: "" }
+    post share_links_path(track_id: @track.id), params: { password: "" }
     share = @track.share_links.last
     assert share.usable?
 
@@ -26,7 +26,7 @@ class ShareLinksTest < ActionDispatch::IntegrationTest
   end
 
   test "password-protected link requires the password" do
-    post track_share_links_path(@track), params: { password: "secret123" }
+    post share_links_path(track_id: @track.id), params: { password: "secret123" }
     share = @track.share_links.last
 
     sign_out
@@ -45,10 +45,10 @@ class ShareLinksTest < ActionDispatch::IntegrationTest
   end
 
   test "revoked link returns gone" do
-    post track_share_links_path(@track), params: { password: "" }
+    post share_links_path(track_id: @track.id), params: { password: "" }
     share = @track.share_links.last
 
-    delete track_share_link_path(@track, share)
+    delete share_link_path(share)
 
     sign_out
     get shared_calendar_path(share.token)
@@ -59,7 +59,7 @@ class ShareLinksTest < ActionDispatch::IntegrationTest
     other = User.create!(email_address: "other-sharer@example.com", password: "motdepasse1")
     foreign_track = other.tracks.create!(name: "X", color: "primary", quit_at: 1.day.ago)
 
-    post track_share_links_path(foreign_track), params: { password: "" }
+    post share_links_path(track_id: foreign_track.id), params: { password: "" }
 
     assert_response :not_found
   end

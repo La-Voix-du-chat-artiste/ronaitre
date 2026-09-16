@@ -27,6 +27,7 @@ module ApplicationHelper
     paths = {
       "gauge" => "M12 14l4-4M3.34 19a10 10 0 1 1 17.32 0",
       "plus" => "M12 5v14M5 12h14",
+      "bell" => "M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0",
       "message" => "M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z",
       "users" => "M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75",
       "heart" => "M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z",
@@ -43,6 +44,11 @@ module ApplicationHelper
                         .where.not(messages: { sender_id: Current.user.id })
                         .count
     count.positive? ? "Messagerie (#{count})" : "Messagerie"
+  end
+
+  def notifications_label
+    count = Current.user.notifications.unread.count
+    count.positive? ? "Notifications (#{count})" : "Notifications"
   end
 
   def counter_time(seconds)

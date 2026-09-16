@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get "avis", to: "feedbacks#new"
   post "avis", to: "feedbacks#create"
   get "sitemap.xml", to: "sitemaps#show", defaults: { format: "xml" }
+  get "manifest.webmanifest", to: "rails/pwa#manifest", defaults: { format: :json }
 
   get "dashboard", to: "tracks#index", as: :dashboard
 
@@ -31,9 +32,11 @@ Rails.application.routes.draw do
       post :close
     end
     resources :consumptions, only: %i[create destroy]
+    resources :milestones, only: %i[create destroy]
   end
 
   resource :settings, only: %i[show update] do
+    patch :update_prefs
     get :export
     delete :destroy_account
   end
@@ -61,9 +64,22 @@ Rails.application.routes.draw do
       post :close
     end
     resources :consumptions, only: %i[create destroy]
-    resources :share_links, only: %i[create destroy], path: "partages"
+    resources :milestones, only: %i[create destroy]
   end
+
+  resources :share_links, only: %i[create destroy], path: "partages"
 
   get "c/:token", to: "shared_calendars#show", as: :shared_calendar
   post "c/:token", to: "shared_calendars#unlock"
+
+  post "aidants/:id/demande", to: "aidants#request_help", as: :request_aidant
+
+  resources :notifications, only: :index
+  post "notifications/mark-read", to: "notifications#mark_read", as: :mark_read_notifications
+
+  get "chat", to: "chat#show"
+  post "chat", to: "chat#say"
+  delete "chat/historique", to: "chat#destroy_history", as: :chat_history
+
+  get "csapa", to: "csapa#index"
 end

@@ -24,6 +24,14 @@
                                    class: "h-10 w-full rounded-lg border border-input bg-card px-3 text-sm focus-visible:outline-2 focus-visible:outline-ring" %>
         <% end %>
       </div>
+      <% if Current.user.role == "aidant" %>
+        <div>
+          <%= render FieldComponent.new(label: t("settings.bio"), for_attr: "user_bio", hint: t("settings.bio_hint")) do %>
+            <%= form.text_area :bio, id: "user_bio", rows: 3, maxlength: 400,
+                                class: "w-full rounded-lg border border-input bg-card px-3 py-2 text-sm focus-visible:outline-2 focus-visible:outline-ring" %>
+          <% end %>
+        </div>
+      <% end %>
       <label class="flex items-center gap-3 text-sm">
         <%= form.check_box :anonymous, class: "h-4 w-4 rounded border-input accent-primary" %>
         <span><%= t("settings.anonymous") %></span>
@@ -50,3 +58,26 @@
     </div>
   <% end %>
 </div>
+
+  <%= render CardComponent.new(html: { class: "p-7" }) do %>
+    <h2 class="font-bold"><%= t("settings.notifications") %></h2>
+    <p class="mt-1 text-sm text-muted-foreground"><%= t("settings.notifications_help") %></p>
+    <%= form_with url: update_prefs_settings_path, method: :patch, class: "mt-5 space-y-3" do |form| %>
+      <div class="grid grid-cols-[1fr_repeat(3,min-content)] items-center gap-x-4 gap-y-2 text-sm">
+        <span></span>
+        <span class="text-center text-xs font-semibold text-muted-foreground"><%= t("settings.chan_in_app") %></span>
+        <span class="text-center text-xs font-semibold text-muted-foreground"><%= t("settings.chan_email") %></span>
+        <span class="text-center text-xs font-semibold text-muted-foreground"><%= t("settings.chan_sms") %></span>
+        <% @prefs.each do |pref| %>
+          <span><%= t("settings.events.#{pref.event}") %></span>
+          <% %w[in_app email sms].each do |channel| %>
+            <span class="text-center">
+              <input type="checkbox" name="prefs[<%= pref.event %>][<%= channel %>]" value="1" <%= "checked" if pref.public_send(channel) %>
+                     class="h-4 w-4 rounded border-input accent-primary" />
+            </span>
+          <% end %>
+        <% end %>
+      </div>
+      <%= form.submit t("settings.save"), class: "inline-flex h-9 items-center rounded-lg bg-primary px-4 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-primary/90" %>
+    <% end %>
+  <% end %>

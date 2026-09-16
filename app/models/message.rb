@@ -29,6 +29,15 @@ class Message < ApplicationRecord
     recipient = conversation.other_than(sender)
     return if recipient.id == sender.id
 
-    MessagesMailer.new_message(self, recipient).deliver_later
+    Notification.deliver!(recipient, "new_message", { message: I18n.t("notifications.new_message", name: sender.display_name.presence || I18n.t("helper.anonymous_person")) })
+
+    if NotificationPref.allowed?(recipient, "new_message", :email)
+      MessagesMailer.new_message(self, recipient).deliver_later
+    end
+
+    return unless NotificationPref.allowed?(recipient, "new_message", :sms)
+
+    result = SmsGateway.send!(recipient.phone, I18n.t("notifications.new_message_sms", name: sender.display_name.presence || "Ronaitre"))
+    Rails.logger.warn("[sms] send failed: #{result.error}") unless result.success?
   end
 end

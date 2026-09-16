@@ -1,0 +1,20 @@
+<% content_for :title, "Notifications — Ronaitre" %>
+
+<div class="flex items-center justify-between">
+  <h1 class="text-3xl font-extrabold tracking-tight"><%= t("notifications.title") %></h1>
+</div>
+
+<% if @notifications.empty? %>
+  <%= render CardComponent.new(html: { class: "mt-8 p-10 text-center text-muted-foreground" }) do %>
+    <%= t("notifications.empty") %>
+  <% end %>
+<% else %>
+  <div class="mt-8 space-y-2.5">
+    <% @notifications.each do |notification| %>
+      <div class="rounded-lg border border-border bg-card px-5 py-3.5 text-sm shadow-sm">
+        <p><%= notification.payload["message"] || t("notifications.events.#{notification.event}", default: t("notifications.events.generic")) %></p>
+        <p class="mt-0.5 text-xs text-muted-foreground"><%= l(notification.created_at, format: :short) %></p>
+      </div>
+    <% end %>
+  </div>
+<% end %>

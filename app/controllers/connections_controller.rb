@@ -4,34 +4,37 @@ class ConnectionsController < ApplicationController
 
   def index
     @memberships = Current.user.owned_memberships.order(created_at: :desc)
-    @aidant = Current.user.role == "aidant"
     @tracks = Current.user.tracks.ordered
   end
 
   def create
-    member = User.find_by(email_address: params[:email_address].to_s.strip.downcase)
+    email = params[:email_address].to_s.strip.downcase
     kind = Membership::KINDS.include?(params[:kind]) ? params[:kind] : "proche"
 
-    if member.nil?
-      return redirect_to connections_path, alert: t("connections.no_account", email: params[:email_address])
+    if email.blank?
+      return redirect_to connections_path, alert: t("connections.email_blank")
     end
 
-    if member.id == Current.user.id
+    if email == Current.user.email_address
       return redirect_to connections_path, alert: t("connections.self_error")
     end
 
-    membership = Current.user.owned_memberships
-                             .where(member: member, kind: kind)
-                             .where.not(status: "revoked")
-                             .first
+    member = User.find_by(email_address: email)
+    existing = Current.user.owned_memberships
+                          .where("member_id = ? OR invited_email = ?", member&.id, email)
+                          .where(kind: kind)
+                          .where.not(status: "revoked")
+                          .first
 
-    if membership
+    if existing
       return redirect_to connections_path, alert: t("connections.already_connected")
     end
 
-    Current.user.owned_memberships.create!(member: member, kind: kind, status: "invited")
+    membership = Current.user.owned_memberships.create!(member: member, invited_email: member.nil? ? email : nil, kind: kind, status: "invited")
     MembershipsMailer.invitation(membership).deliver_later
-    redirect_to connections_path, notice: t("connections.invited", email: member.email_address, kind: t("membership.kinds.#{kind}"))
+
+    notice_key = member.nil? ? "connections.invited_no_account" : "connections.invited"
+    redirect_to connections_path, notice: t(notice_key, email: email, kind: t("membership.kinds.#{kind}"))
   end
 
   def update
@@ -45,7 +48,8 @@ class ConnectionsController < ApplicationController
     return head :forbidden unless @membership.owner_id == Current.user.id
 
     @membership.update!(status: "revoked")
-    redirect_to connections_path, notice: t("connections.revoked", name: @membership.member.email_address)
+    Notification.deliver!(@membership.member, "grant_change", { message: t("notifications.revoked_by_owner") }) if @membership.member
+    redirect_to connections_path, notice: t("connections.revoked", name: @membership.display_name)
   end
 
   private
@@ -71,6 +75,9 @@ class ConnectionsController < ApplicationController
       end
     end
 
-    @membership.update!(status: "active") if @membership.invited? && @membership.grants.any?
+    if @membership.invited? && @membership.grants.any?
+      @membership.update!(status: "active")
+      Notification.deliver!(@membership.member, "grant_change", { message: t("notifications.granted_by_owner") }) if @membership.member
+    end
   end
 end

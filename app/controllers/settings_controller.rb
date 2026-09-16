@@ -2,6 +2,8 @@ class SettingsController < ApplicationController
   layout "app"
 
   def show
+    NotificationPref.ensure_defaults_for!(Current.user)
+    @prefs = Current.user.notification_prefs.order(:event)
   end
 
   def update
@@ -10,6 +12,18 @@ class SettingsController < ApplicationController
     else
       render :show, status: :unprocessable_entity
     end
+  end
+
+  def update_prefs
+    NotificationPref::EVENTS.each do |event|
+      pref = Current.user.notification_prefs.find_or_create_by!(event: event)
+      pref.update!(
+        in_app: params.dig(:prefs, event, :in_app) == "1",
+        email: params.dig(:prefs, event, :email) == "1",
+        sms: params.dig(:prefs, event, :sms) == "1"
+      )
+    end
+    redirect_to settings_path, notice: t("settings.prefs_updated")
   end
 
   def export

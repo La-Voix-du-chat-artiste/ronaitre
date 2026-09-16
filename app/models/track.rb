@@ -94,10 +94,18 @@ class Track < ApplicationRecord
                 .pluck(:occurred_at).map { |d| d.in_time_zone.to_date }.tally
   end
 
+  DEFAULT_MILESTONES = [
+    { "label" => "24 h", "seconds" => 86_400 },
+    { "label" => "7 jours", "seconds" => 604_800 },
+    { "label" => "1 mois", "seconds" => 2_592_000 },
+    { "label" => "3 mois", "seconds" => 7_776_000 },
+    { "label" => "1 an", "seconds" => 31_536_000 }
+  ].freeze
+
   private
 
   def build_milestones_from_preset
-    definitions = preset&.milestones.presence || Preset::CATALOGUE.first[:milestones]
+    definitions = preset&.milestones.presence || DEFAULT_MILESTONES
     definitions.each do |definition|
       milestones.create!(label: definition["label"] || definition[:label], seconds: definition["seconds"] || definition[:seconds])
     end

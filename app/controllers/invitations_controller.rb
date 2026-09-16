@@ -10,17 +10,20 @@ class InvitationsController < ApplicationController
     @membership = Membership.find_by!(invite_token: params[:token])
     head :gone if @membership.revoked?
 
-    if @membership.member_id != Current.user.id
+    if @membership.member && @membership.member_id != Current.user.id
       return redirect_to root_path, alert: t("invitations.wrong_account", email: @membership.member.email_address)
     end
 
+    @membership.attach_member!(Current.user)
     @membership.update!(status: "active")
+    Notification.deliver!(@membership.owner, "grant_change", { message: t("notifications.member_accepted") })
     redirect_to helper_dashboard_path, notice: t("invitations.accepted")
   end
 
   def accept
     @membership = Current.user.memberships_involving.find(params[:id])
     @membership.update!(status: "active")
+    Notification.deliver!(@membership.owner, "grant_change", { message: t("notifications.member_accepted") })
     redirect_to helper_dashboard_path, notice: t("invitations.accepted")
   end
 

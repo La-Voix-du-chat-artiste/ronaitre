@@ -79,6 +79,23 @@
         </li>
       <% end %>
     </ul>
+    <% if @policy.owner? %>
+      <%= form_with url: track_milestones_path(@track), class: "mt-4 flex items-end gap-2 border-t border-border pt-4" do |form| %>
+        <div class="grow">
+          <%= render FieldComponent.new(label: t("milestones.add_label"), for_attr: "milestone_label") do %>
+            <%= form.text_field :label, id: "milestone_label", maxlength: 40, placeholder: t("milestones.label_placeholder"),
+                                class: "h-9 w-full rounded-lg border border-input bg-card px-2.5 text-sm focus-visible:outline-2 focus-visible:outline-ring" %>
+          <% end %>
+        </div>
+        <div class="w-20">
+          <%= render FieldComponent.new(label: t("milestones.add_days"), for_attr: "milestone_days") do %>
+            <%= form.number_field :days, id: "milestone_days", min: 1, required: true,
+                                  class: "h-9 w-full rounded-lg border border-input bg-card px-2.5 text-sm focus-visible:outline-2 focus-visible:outline-ring" %>
+          <% end %>
+        </div>
+        <%= form.submit t("milestones.add_submit"), class: "inline-flex h-9 items-center rounded-lg border border-border px-3 text-xs font-semibold hover:bg-muted" %>
+      <% end %>
+    <% end %>
   <% end %>
 </div>
 
@@ -179,7 +196,7 @@
             </div>
             <div class="flex items-center gap-2">
               <%= link_to t("share_links.open"), shared_calendar_path(share.token), target: "_blank", rel: "noopener", class: "text-xs font-semibold text-primary hover:underline" %>
-              <%= button_to t("share_links.revoke"), track_share_link_path(@track, share), method: :delete,
+              <%= button_to t("share_links.revoke"), share_link_path(share), method: :delete,
                             class: "text-xs font-semibold text-destructive hover:underline", form: { class: "inline" } %>
             </div>
           </li>
@@ -187,7 +204,7 @@
       </ul>
     <% end %>
 
-    <%= form_with url: track_share_links_path(@track), class: "mt-4 flex flex-wrap items-end gap-3" do |form| %>
+    <%= form_with url: share_links_path(track_id: @track), class: "mt-4 flex flex-wrap items-end gap-3" do |form| %>
       <div class="grow-0">
         <%= render FieldComponent.new(label: t("share_links.password_label"), for_attr: "share_password", hint: t("share_links.password_hint")) do %>
           <%= form.password_field :password, id: "share_password",

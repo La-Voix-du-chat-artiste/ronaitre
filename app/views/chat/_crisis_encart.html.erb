@@ -1,0 +1,11 @@
+<% if flash[:alert].blank? %><% end %>
+<%# Encart ressources — affiché en permanence en bas de conversation + remplacé en cas de crise %>
+<div id="crisis-encart" class="mt-4">
+  <%= render EncartComponent.new(variant: :help) do %>
+    <span class="font-semibold"><%= t("chat.crisis_title") %></span>
+    · <a href="tel:3114" class="font-semibold underline">3114</a> (24h/24)
+    · <a href="tel:0800231313" class="underline">0 800 23 13 13</a>
+    · <a href="tel:0980980930" class="underline">0 980 980 930</a>
+    · <%= link_to t("landing.circle.csapa"), csapa_path, class: "font-semibold underline" %>
+  <% end %>
+</div>

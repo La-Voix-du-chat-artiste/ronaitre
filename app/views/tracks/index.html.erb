@@ -5,6 +5,12 @@
   <%= render(ButtonComponent.new(variant: :inverted, size: :sm, href: new_track_path)) { "+ Nouveau suivi" } %>
 </div>
 
+<% if @active_tracks.any? %>
+  <p class="mt-2 text-sm text-muted-foreground">
+    <%= t("dashboard.summary", count: @active_tracks.size, days: @active_tracks.sum(&:elapsed_days)) %>
+  </p>
+<% end %>
+
 <% if @active_tracks.empty? && @other_tracks.empty? %>
   <%= render CardComponent.new(html: { class: "mt-8 p-10 text-center" }) do %>
     <h2 class="text-xl font-bold"><%= t("onboarding.title") %></h2>

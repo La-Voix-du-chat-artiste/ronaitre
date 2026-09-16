@@ -32,6 +32,19 @@
                                   class: "h-10 w-full rounded-lg border border-input bg-card px-3 text-sm focus-visible:outline-2 focus-visible:outline-ring" %>
         <% end %>
       </div>
+      <fieldset>
+        <legend class="mb-2 text-sm font-medium"><%= t("auth.role_label") %></legend>
+        <div class="space-y-2 text-sm">
+          <label class="flex items-center gap-2.5">
+            <input type="radio" name="role" value="suivi" checked="checked" class="h-4 w-4 accent-primary" />
+            <span><%= t("auth.role_suivi") %></span>
+          </label>
+          <label class="flex items-center gap-2.5">
+            <input type="radio" name="role" value="aidant" class="h-4 w-4 accent-primary" />
+            <span><%= t("auth.role_aidant") %></span>
+          </label>
+        </div>
+      </fieldset>
       <%= form.submit t("auth.signup_submit"), class: "inline-flex h-11 w-full items-center justify-center rounded-lg bg-secondary px-6 font-semibold text-secondary-foreground shadow-sm transition hover:brightness-95 focus-visible:outline-2 focus-visible:outline-ring" %>
       <p class="text-center text-xs text-muted-foreground"><%= t("auth.signup_reassurance") %></p>
     <% end %>

@@ -1,15 +1,41 @@
-<% content_for :title, "Calendrier de #{@track.name} — Ronaitre" %>
+<% content_for :title, "Calendrier partagé — Ronaitre" %>
 
-<div class="rounded-lg border border-border bg-card p-6 shadow-sm">
-  <div class="flex items-center gap-2.5">
-    <span class="h-3 w-3 rounded-full <%= track_color_class(@track.color) %>"></span>
-    <h1 class="text-xl font-extrabold tracking-tight"><%= @track.name %></h1>
-    <%= render BadgeComponent.new(variant: :secondary) { "J+#{@track.elapsed_days}" } %>
+<% if @track %>
+  <div class="rounded-lg border border-border bg-card p-6 shadow-sm">
+    <div class="flex items-center gap-2.5">
+      <span class="h-3 w-3 rounded-full <%= track_color_class(@track.color) %>"></span>
+      <h1 class="text-xl font-extrabold tracking-tight"><%= @track.name %></h1>
+      <%= render BadgeComponent.new(variant: :secondary) { "J+#{@track.elapsed_days}" } %>
+    </div>
+
+    <div class="mt-6">
+      <%= render partial: "tracks/calendar", locals: { nav: ->(ym) { shared_calendar_path(@share.token, ym: ym) } } %>
+    </div>
+
+    <p class="mt-6 border-t border-border pt-4 text-xs text-muted-foreground"><%= t("shared_calendar.disclaimer") %></p>
   </div>
+<% else %>
+  <%# Partage du compte entier — lecture seule, sans données personnelles %>
+  <h1 class="text-xl font-extrabold tracking-tight"><%= t("shared_calendar.account_title") %></h1>
+  <p class="mt-1 text-sm text-muted-foreground"><%= t("shared_calendar.account_help") %></p>
 
-  <div class="mt-6">
-    <%= render partial: "tracks/calendar", locals: { nav: ->(ym) { shared_calendar_path(@share.token, ym: ym) } } %>
+  <div class="mt-6 space-y-4">
+    <% @share.user.tracks.active.ordered.each do |track| %>
+      <div class="rounded-lg border border-border bg-card p-6 shadow-sm">
+        <div class="flex items-center justify-between">
+          <span class="flex items-center gap-2.5 font-bold"><span class="h-3 w-3 rounded-full <%= track_color_class(track.color) %>"></span><%= track.name %></span>
+          <span class="counter-digits font-semibold text-primary">J+<%= track.elapsed_days %></span>
+        </div>
+        <p class="counter-digits mt-1 text-sm text-muted-foreground"><%= counter_time(track.elapsed_seconds) %></p>
+        <% next_ms = track.next_milestone %>
+        <% if next_ms %>
+          <p class="mt-2 text-xs text-muted-foreground"><%= next_ms.label %> · <%= t("tracks.in_days", days: [next_ms.seconds - track.elapsed_seconds, 0].max / 86_400) %></p>
+        <% end %>
+      </div>
+    <% end %>
+    <% if @share.user.tracks.active.empty? %>
+      <p class="rounded-lg border border-border bg-card p-6 text-center text-sm text-muted-foreground"><%= t("shared_calendar.no_tracks") %></p>
+    <% end %>
   </div>
-
-  <p class="mt-6 border-t border-border pt-4 text-xs text-muted-foreground"><%= t("shared_calendar.disclaimer") %></p>
-</div>
+  <p class="mt-6 text-xs text-muted-foreground"><%= t("shared_calendar.disclaimer") %></p>
+<% end %>

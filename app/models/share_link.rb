@@ -1,6 +1,6 @@
 class ShareLink < ApplicationRecord
   belongs_to :user
-  belongs_to :track
+  belongs_to :track, optional: true
 
   has_secure_password validations: false
 

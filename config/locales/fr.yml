@@ -1,356 +1,555 @@
 fr:
   app:
-    name: "Ronaitre"
-    tagline: "Suivi d'abstinence privé, jour après jour."
+    name: Ronaitre
+    tagline: Suivi d'abstinence privé, jour après jour.
   nav:
-    product: "Le produit"
-    how_it_works: "Comment ça marche"
-    circle: "Entourage"
-    testimonials: "Témoignages"
-    faq: "FAQ"
-    start_free: "Commencer gratuitement"
-    sign_in: "Se connecter"
-    sign_up: "Créer un compte"
-    dashboard: "Mon tableau de bord"
-    sign_out: "Se déconnecter"
+    product: Le produit
+    how_it_works: Comment ça marche
+    circle: Entourage
+    testimonials: Témoignages
+    faq: FAQ
+    start_free: Commencer gratuitement
+    sign_in: Se connecter
+    sign_up: Créer un compte
+    dashboard: Mon tableau de bord
+    sign_out: Se déconnecter
   landing:
     help_banner:
-      title: "Besoin d'aide maintenant ?"
-      csapa: "Trouver un CSAPA"
+      title: Besoin d'aide maintenant ?
+      csapa: Trouver un CSAPA
     hero:
-      badge: "Reprenez le contrôle"
-      title: "Suivez votre progrès, jour après jour."
-      subtitle: "Ronaitre vous aide à suivre vos addictions, mesurer votre temps d'abstinence en temps réel et célébrer chaque étape franchie. Avec le soutien d'aidants, de proches et de soignants."
-      secondary_cta: "J'ai déjà un compte"
-      reassurance: "Gratuit · Sans engagement · Vos données restent privées"
-      demo_track: "Tabac · Suivi actif"
-      demo_days: "jours"
-      demo_next: "3 mois dans 43 j"
+      badge: Reprenez le contrôle
+      title: Suivez votre progrès, jour après jour.
+      subtitle: Ronaitre vous aide à suivre vos addictions, mesurer votre temps d'abstinence
+        en temps réel et célébrer chaque étape franchie. Avec le soutien d'aidants,
+        de proches et de soignants.
+      secondary_cta: J'ai déjà un compte
+      reassurance: Gratuit · Sans engagement · Vos données restent privées
+      demo_track: Tabac · Suivi actif
+      demo_days: jours
+      demo_next: 3 mois dans 43 j
     steps:
-      title: "Trois pas. Une minute. Zéro jugement."
-      subtitle: "Vous n'avez rien à expliquer, rien à prouver. Vous choisissez un suivi, et le temps travaille pour vous."
-      one_title: "Créez votre compte"
-      one_body: "Un e-mail, un mot de passe, c'est tout. Aucune question intrusive, aucune carte bancaire."
-      two_title: "Choisissez votre suivi"
-      two_body: "Tabac, alcool, cannabis, jeux, écrans… ou créez le vôtre. Vous pouvez en suivre plusieurs en parallèle."
-      three_title: "Laissez le temps compter"
-      three_body: "Votre compteur avance en temps réel et chaque étape franchie est célébrée — 24 h, 7 jours, 1 mois."
+      title: Trois pas. Une minute. Zéro jugement.
+      subtitle: Vous n'avez rien à expliquer, rien à prouver. Vous choisissez un suivi,
+        et le temps travaille pour vous.
+      one_title: Créez votre compte
+      one_body: Un e-mail, un mot de passe, c'est tout. Aucune question intrusive,
+        aucune carte bancaire.
+      two_title: Choisissez votre suivi
+      two_body: Tabac, alcool, cannabis, jeux, écrans… ou créez le vôtre. Vous pouvez
+        en suivre plusieurs en parallèle.
+      three_title: Laissez le temps compter
+      three_body: Votre compteur avance en temps réel et chaque étape franchie est
+        célébrée — 24 h, 7 jours, 1 mois.
     product:
-      title: "Conçu pour les jours faciles, et les autres."
-      subtitle: "Une interface épurée qui met votre parcours au centre — et qui reste disponible à 3 h du matin, quand l'envie est la plus forte."
-      card1_title: "Plusieurs suivis"
-      card1_body: "Autant de parcours que vous le souhaitez, chacun avec son compteur, ses étapes et son historique."
-      card2_title: "Des étapes qui comptent"
-      card2_body: "Les paliers — 24 h, 7 jours, 1 mois, 3 mois — se débloquent au fil du temps et matérialisent vos progrès."
-      card3_title: "Entouré, pas exposé"
-      card3_body: "Vous choisissez exactement ce que voient vos proches : un suivi, ses étapes, rien de plus. Révocable en un geste."
-      card3_badge: "Partage activé"
-      card3_note: "Révocable à tout moment"
+      title: Conçu pour les jours faciles, et les autres.
+      subtitle: Une interface épurée qui met votre parcours au centre — et qui reste
+        disponible à 3 h du matin, quand l'envie est la plus forte.
+      card1_title: Plusieurs suivis
+      card1_body: Autant de parcours que vous le souhaitez, chacun avec son compteur,
+        ses étapes et son historique.
+      card2_title: Des étapes qui comptent
+      card2_body: Les paliers — 24 h, 7 jours, 1 mois, 3 mois — se débloquent au fil
+        du temps et matérialisent vos progrès.
+      card3_title: Entouré, pas exposé
+      card3_body: 'Vous choisissez exactement ce que voient vos proches : un suivi,
+        ses étapes, rien de plus. Révocable en un geste.'
+      card3_badge: Partage activé
+      card3_note: Révocable à tout moment
     testimonials:
-      title: "Des parcours, pas des promesses."
-      demo_notice: "Maquette de démonstration — parcours illustratifs présentés pour montrer la mise en page de la section."
+      title: Des parcours, pas des promesses.
+      demo_notice: Maquette de démonstration — parcours illustratifs présentés pour
+        montrer la mise en page de la section.
       items:
-        - quote: "Voir les secondes défiler m'a aidée à tenir les cinq premières minutes. Puis les cinq suivantes. J'ai passé le cap des 30 jours pour la première fois."
-          author: "Camille, 34 ans"
-          context: "Tabac · J+47"
-        - quote: "Ma sœur voit mon compteur. Elle m'envoie un message à chaque étape. Le soir où j'ai faibli, c'est elle qui m'a rappelé pourquoi j'avais commencé."
-          author: "Yanis, 28 ans"
-          context: "Alcool · J+112"
-        - quote: "J'ai rechuté au bout de 40 jours. Le compteur ne m'a pas jugé : il m'a montré que 40 jours, je savais déjà le faire. La deuxième fois a été plus simple."
-          author: "Martine, 52 ans"
-          context: "Cannabis · J+63"
+      - quote: Voir les secondes défiler m'a aidée à tenir les cinq premières minutes.
+          Puis les cinq suivantes. J'ai passé le cap des 30 jours pour la première
+          fois.
+        author: Camille, 34 ans
+        context: Tabac · J+47
+      - quote: Ma sœur voit mon compteur. Elle m'envoie un message à chaque étape.
+          Le soir où j'ai faibli, c'est elle qui m'a rappelé pourquoi j'avais commencé.
+        author: Yanis, 28 ans
+        context: Alcool · J+112
+      - quote: 'J''ai rechuté au bout de 40 jours. Le compteur ne m''a pas jugé :
+          il m''a montré que 40 jours, je savais déjà le faire. La deuxième fois a
+          été plus simple.'
+        author: Martine, 52 ans
+        context: Cannabis · J+63
     faq:
-      title: "Tout ce que vous n'osez pas demander."
+      title: Tout ce que vous n'osez pas demander.
       items:
-        - question: "Mes données sont-elles vraiment privées ?"
-          answer: "Oui. Vos suivis vous appartiennent : vos données ne sont pas revendues ni partagées avec des annonceurs. Seules les personnes que vous choisissez explicitement d'associer à un suivi peuvent voir votre progression — et vous pouvez révoquer ce partage à tout moment."
-        - question: "L'application est-elle vraiment gratuite ?"
-          answer: "Oui. La création de compte, le suivi en temps réel, les étapes et le partage avec vos proches sont gratuits et sans engagement, en moins d'une minute."
-        - question: "Que voient mes proches ou mon soignant ?"
-          answer: "Uniquement ce que vous décidez de partager : le temps d'abstinence du suivi concerné et les étapes franchies. Vous pouvez révoquer ce partage à tout moment, sans justification."
-        - question: "Et si je rechute ?"
-          answer: "Une rechute ne remet pas votre parcours à zéro : elle en fait partie. Vous repartez quand vous voulez, et votre historique vous aide à repérer les moments fragiles pour mieux les préparer la fois suivante."
-        - question: "Puis-je suivre plusieurs addictions en parallèle ?"
-          answer: "Oui, autant que vous le souhaitez : tabac, alcool, cannabis, jeux, écrans — ou un suivi personnalisé créé par vos soins, avec ses propres étapes."
-        - question: "Ronaitre remplace-t-il un professionnel de santé ?"
-          answer: "Non. C'est un outil d'accompagnement au quotidien, pas un dispositif médical. Si vous traversez une période difficile, les professionnels des lignes nationales (39 89 · 0 800 23 13 13 · 0 980 980 930) et les centres CSAPA sont les bons réflexes — et Ronaitre peut compléter ce suivi."
+      - question: Mes données sont-elles vraiment privées ?
+        answer: 'Oui. Vos suivis vous appartiennent : vos données ne sont pas revendues
+          ni partagées avec des annonceurs. Seules les personnes que vous choisissez
+          explicitement d''associer à un suivi peuvent voir votre progression — et
+          vous pouvez révoquer ce partage à tout moment.'
+      - question: L'application est-elle vraiment gratuite ?
+        answer: Oui. La création de compte, le suivi en temps réel, les étapes et
+          le partage avec vos proches sont gratuits et sans engagement, en moins d'une
+          minute.
+      - question: Que voient mes proches ou mon soignant ?
+        answer: 'Uniquement ce que vous décidez de partager : le temps d''abstinence
+          du suivi concerné et les étapes franchies. Vous pouvez révoquer ce partage
+          à tout moment, sans justification.'
+      - question: Et si je rechute ?
+        answer: 'Une rechute ne remet pas votre parcours à zéro : elle en fait partie.
+          Vous repartez quand vous voulez, et votre historique vous aide à repérer
+          les moments fragiles pour mieux les préparer la fois suivante.'
+      - question: Puis-je suivre plusieurs addictions en parallèle ?
+        answer: 'Oui, autant que vous le souhaitez : tabac, alcool, cannabis, jeux,
+          écrans — ou un suivi personnalisé créé par vos soins, avec ses propres étapes.'
+      - question: Ronaitre remplace-t-il un professionnel de santé ?
+        answer: Non. C'est un outil d'accompagnement au quotidien, pas un dispositif
+          médical. Si vous traversez une période difficile, les professionnels des
+          lignes nationales (39 89 · 0 800 23 13 13 · 0 980 980 930) et les centres
+          CSAPA sont les bons réflexes — et Ronaitre peut compléter ce suivi.
     why:
-      title: "Quatre engagements, tenus."
-      private_title: "Privé par défaut"
-      private_body: "Vos données vous appartiennent : pas de revente, pas de publicité, pas de fil d'actualité. Seules les personnes que vous associez explicitement voient votre progression — et vous pouvez tout révoquer."
-      realtime_title: "Temps réel, vraiment"
-      realtime_body: "Chaque seconde compte. Le compteur avance en direct, même quand vous ne regardez pas : vos jours sont vos jours, à la seconde près."
-      relapse_title: "Pensé pour la rechute"
-      relapse_body: "Repartir ne remet pas votre vie à zéro. Votre historique reste, vos étapes aussi : un jour difficile est une donnée, pas un échec."
-      free_title: "Gratuit, sans piège"
-      free_body: "Pas d'essai limité, pas de fonctionnalité verrouillée. Commencez en moins d'une minute, sans carte bancaire ni engagement."
+      title: Quatre engagements, tenus.
+      private_title: Privé par défaut
+      private_body: 'Vos données vous appartiennent : pas de revente, pas de publicité,
+        pas de fil d''actualité. Seules les personnes que vous associez explicitement
+        voient votre progression — et vous pouvez tout révoquer.'
+      realtime_title: Temps réel, vraiment
+      realtime_body: 'Chaque seconde compte. Le compteur avance en direct, même quand
+        vous ne regardez pas : vos jours sont vos jours, à la seconde près.'
+      relapse_title: Pensé pour la rechute
+      relapse_body: 'Repartir ne remet pas votre vie à zéro. Votre historique reste,
+        vos étapes aussi : un jour difficile est une donnée, pas un échec.'
+      free_title: Gratuit, sans piège
+      free_body: Pas d'essai limité, pas de fonctionnalité verrouillée. Commencez
+        en moins d'une minute, sans carte bancaire ni engagement.
     circle:
-      title: "On avance mieux à plusieurs."
-      subtitle: "Ronaitre relie votre parcours aux personnes qui veulent vous voir réussir — avec votre accord, et rien qu'avec lui."
-      helpers_title: "Des aidants"
-      helpers_body: "Échangez avec des aidants inscrits sur l'application, disponibles pour vous soutenir au quotidien — anonymement si vous le préférez."
-      loved_ones_title: "Vos proches"
-      loved_ones_body: "Partagez votre progression avec les personnes de votre choix pour qu'elles puissent vous encourager à chaque étape franchie."
-      carers_title: "Des soignants"
-      carers_body: "Restez en lien avec un soignant qui suit votre parcours, ou trouvez une structure CSAPA près de chez vous via l'annuaire intégré."
-      csapa: "Trouver un CSAPA"
-      disclaimer: "Ronaitre est un outil d'accompagnement au quotidien. Il ne se substitue pas à un avis ou à un suivi médical. En cas de difficulté immédiate : Tabac Info Service (39 89, gratuit), Drogues Info Service (0 800 23 13 13, gratuit et anonyme, 7 j/7 de 8 h à 2 h), Alcool Info Service (0 980 980 930, anonyme, 7 j/7 de 8 h à 2 h)."
+      title: On avance mieux à plusieurs.
+      subtitle: Ronaitre relie votre parcours aux personnes qui veulent vous voir
+        réussir — avec votre accord, et rien qu'avec lui.
+      helpers_title: Des aidants
+      helpers_body: Échangez avec des aidants inscrits sur l'application, disponibles
+        pour vous soutenir au quotidien — anonymement si vous le préférez.
+      loved_ones_title: Vos proches
+      loved_ones_body: Partagez votre progression avec les personnes de votre choix
+        pour qu'elles puissent vous encourager à chaque étape franchie.
+      carers_title: Des soignants
+      carers_body: Restez en lien avec un soignant qui suit votre parcours, ou trouvez
+        une structure CSAPA près de chez vous via l'annuaire intégré.
+      csapa: Trouver un CSAPA
+      disclaimer: 'Ronaitre est un outil d''accompagnement au quotidien. Il ne se
+        substitue pas à un avis ou à un suivi médical. En cas de difficulté immédiate
+        : Tabac Info Service (39 89, gratuit), Drogues Info Service (0 800 23 13 13,
+        gratuit et anonyme, 7 j/7 de 8 h à 2 h), Alcool Info Service (0 980 980 930,
+        anonyme, 7 j/7 de 8 h à 2 h).'
     final_cta:
-      title: "Le meilleur moment pour commencer, c'était hier. Le deuxième meilleur, c'est maintenant."
-      subtitle: "Créez votre compte en moins d'une minute. Votre premier jour commence dès maintenant — et cette fois, vous ne serez pas seul."
+      title: Le meilleur moment pour commencer, c'était hier. Le deuxième meilleur,
+        c'est maintenant.
+      subtitle: Créez votre compte en moins d'une minute. Votre premier jour commence
+        dès maintenant — et cette fois, vous ne serez pas seul.
     footer:
-      disclaimer: "Ronaitre n'est pas un dispositif médical et ne remplace pas un avis professionnel."
-      rights: "Tous droits réservés."
+      disclaimer: Ronaitre n'est pas un dispositif médical et ne remplace pas un avis
+        professionnel.
+      rights: Tous droits réservés.
   resources:
-    tobacco: "Tabac Info Service — 39 89"
-    drugs: "Drogues Info Service — 0 800 23 13 13"
-    alcohol: "Alcool Info Service — 0 980 980 930"
-    csapa: "Annuaire des CSAPA"
+    tobacco: Tabac Info Service — 39 89
+    drugs: Drogues Info Service — 0 800 23 13 13
+    alcohol: Alcool Info Service — 0 980 980 930
+    csapa: Annuaire des CSAPA
   legal:
-    privacy: "Politique de confidentialité"
-    legal_notice: "Mentions légales"
-    terms: "Conditions d'utilisation"
+    privacy: Politique de confidentialité
+    legal_notice: Mentions légales
+    terms: Conditions d'utilisation
   auth:
-    signin_title: "Se connecter"
-    signin_subtitle: "Content de vous revoir. Votre compteur a continué de compter pour vous."
-    signin_submit: "Se connecter"
-    signin_reassurance: "Vos données sont chiffrées et ne sont jamais partagées."
-    signup_title: "Créer votre compte"
-    signup_subtitle: "Commencez par un seul suivi, vous pourrez en ajouter d'autres ensuite."
-    signup_submit: "Commencer gratuitement"
-    signup_reassurance: "Gratuit · Sans engagement · Vos données restent privées"
-    email: "E-mail"
-    password: "Mot de passe"
-    password_confirmation: "Confirmer le mot de passe"
-    new_password: "Nouveau mot de passe"
-    password_hint: "8 caractères minimum."
-    show: "Afficher"
-    hide: "Masquer"
-    have_account: "Vous avez déjà un compte ?"
-    no_account: "Pas encore de compte ?"
-    forgot_password: "Mot de passe oublié ?"
-    forgot_title: "Mot de passe oublié ?"
-    forgot_subtitle: "Nous vous envoyons un lien de réinitialisation."
-    forgot_submit: "Envoyer le lien"
-    reset_title: "Nouveau mot de passe"
-    reset_submit: "Enregistrer"
-    reset_sent: "Instructions de réinitialisation envoyées (si un compte existe avec cette adresse)."
-    reset_done: "Mot de passe réinitialisé."
-    reset_mismatch: "Les mots de passe ne correspondent pas."
-    reset_invalid: "Lien de réinitialisation invalide ou expiré."
-    signed_in: "Vous êtes connecté."
-    signed_out: "Vous êtes déconnecté."
-    welcome: "Bienvenue sur Ronaitre ! Votre premier jour commence maintenant."
-    invalid_credentials: "Essayez une autre adresse e-mail ou un autre mot de passe."
-    rate_limited: "Trop de tentatives. Réessayez dans quelques minutes."
+    signin_title: Se connecter
+    signin_subtitle: Content de vous revoir. Votre compteur a continué de compter
+      pour vous.
+    signin_submit: Se connecter
+    signin_reassurance: Vos données sont chiffrées et ne sont jamais partagées.
+    signup_title: Créer votre compte
+    signup_subtitle: Commencez par un seul suivi, vous pourrez en ajouter d'autres
+      ensuite.
+    signup_submit: Commencer gratuitement
+    signup_reassurance: Gratuit · Sans engagement · Vos données restent privées
+    email: E-mail
+    password: Mot de passe
+    password_confirmation: Confirmer le mot de passe
+    new_password: Nouveau mot de passe
+    password_hint: 8 caractères minimum.
+    show: Afficher
+    hide: Masquer
+    have_account: Vous avez déjà un compte ?
+    no_account: Pas encore de compte ?
+    forgot_password: Mot de passe oublié ?
+    forgot_title: Mot de passe oublié ?
+    forgot_subtitle: Nous vous envoyons un lien de réinitialisation.
+    forgot_submit: Envoyer le lien
+    reset_title: Nouveau mot de passe
+    reset_submit: Enregistrer
+    reset_sent: Instructions de réinitialisation envoyées (si un compte existe avec
+      cette adresse).
+    reset_done: Mot de passe réinitialisé.
+    reset_mismatch: Les mots de passe ne correspondent pas.
+    reset_invalid: Lien de réinitialisation invalide ou expiré.
+    signed_in: Vous êtes connecté.
+    signed_out: Vous êtes déconnecté.
+    welcome: Bienvenue sur Ronaitre ! Votre premier jour commence maintenant.
+    invalid_credentials: Essayez une autre adresse e-mail ou un autre mot de passe.
+    rate_limited: Trop de tentatives. Réessayez dans quelques minutes.
+    welcome_aidant: Bienvenue sur Ronaitre ! Votre profil d'aidant est prêt.
+    role_label: Vous êtes…
+    role_suivi: La personne qui suit sa consommation
+    role_aidant: Un aidant qui accompagne un proche ou un patient
   feedback:
-    link: "Donner un avis"
-    title: "Donner un avis"
-    subtitle: "Une idée, un bug, un parcours à partager ? Vos retours façonnent Ronaitre — merci."
-    kind: "Type de retour"
-    email: "Votre e-mail (facultatif)"
-    email_hint: "Uniquement si vous souhaitez une réponse. Sinon, votre retour reste anonyme."
-    body: "Votre message"
-    submit: "Envoyer"
-    thanks: "Merci ! Votre avis a bien été envoyé."
+    link: Donner un avis
+    title: Donner un avis
+    subtitle: Une idée, un bug, un parcours à partager ? Vos retours façonnent Ronaitre
+      — merci.
+    kind: Type de retour
+    email: Votre e-mail (facultatif)
+    email_hint: Uniquement si vous souhaitez une réponse. Sinon, votre retour reste
+      anonyme.
+    body: Votre message
+    submit: Envoyer
+    thanks: Merci ! Votre avis a bien été envoyé.
   activerecord:
     models:
-      feedback: "Avis"
+      feedback: Avis
     attributes:
       feedback:
-        kind: "Type de retour"
-        kind_idee: "Idée"
-        kind_bug: "Bug"
-        kind_temoignage: "Témoignage"
-        kind_autre: "Autre"
-        email: "E-mail"
-        body: "Message"
+        kind: Type de retour
+        kind_idee: Idée
+        kind_bug: Bug
+        kind_temoignage: Témoignage
+        kind_autre: Autre
+        email: E-mail
+        body: Message
   onboarding:
-    title: "Commencez par un seul suivi"
-    subtitle: "Choisissez une addiction et une date d'arrêt — votre compteur démarre en temps réel. Vous pourrez en ajouter d'autres ensuite."
-    cta: "Créer mon premier suivi"
-    reassurance: "Gratuit · Sans engagement · Vos données restent privées"
+    title: Commencez par un seul suivi
+    subtitle: Choisissez une addiction et une date d'arrêt — votre compteur démarre
+      en temps réel. Vous pourrez en ajouter d'autres ensuite.
+    cta: Créer mon premier suivi
+    reassurance: Gratuit · Sans engagement · Vos données restent privées
   tracks:
-    active: "Suivi actif"
-    paused_badge: "En pause"
-    closed_badge: "Clos"
-    archived: "Suivis archivés"
-    in_days: "dans %{days} j"
-    new_title: "Nouveau suivi"
-    new_subtitle: "Choisissez un type de suivi, une date d'arrêt — et le temps travaille pour vous."
-    preset_label: "Type de suivi"
-    custom_preset: "Créer le vôtre"
-    name_label: "Nom du suivi"
-    color_label: "Couleur"
-    quit_at_label: "Date d'arrêt"
-    quit_at_hint: "Vous pouvez choisir une date passée : votre compteur démarre à cette date."
-    create_submit: "Démarrer mon suivi"
-    created: "Suivi « %{name} » créé. Votre compteur a commencé."
-    updated: "Suivi mis à jour."
-    destroyed: "Suivi supprimé."
-    paused: "Suivi en pause. Votre compteur reprendra où il s'était arrêté."
-    resumed: "Suivi repris."
-    restarted: "Nouveau départ. Votre historique et vos étapes restent intacts."
-    closed: "Suivi clos. Record conservé : %{best} jours."
-    your_progress: "Votre progression"
-    personal_best: "Record personnel : %{days} j"
-    milestones: "Étapes"
-    log_consumption: "Noter un écart"
-    history: "Historique récent"
-    edit: "Modifier"
-    pause: "Mettre en pause"
-    resume: "Reprendre"
-    restart: "Repartir de zéro"
-    close: "Clore ce suivi"
-    restart_confirm: "Repartir de zéro ? Votre historique et vos étapes franchies seront conservés — seul le compteur repart de maintenant."
-    close_confirm: "Clore ce suivi ? Vous conserverez l'historique et votre record personnel."
-    decision_zone: "Zone de décision"
-    decision_help: "Un écart ne nécessite jamais de repartir de zéro. Ces actions sont volontairement explicites."
-    shared_view: "Vue partagée par le propriétaire"
+    active: Suivi actif
+    paused_badge: En pause
+    closed_badge: Clos
+    archived: Suivis archivés
+    in_days: dans %{days} j
+    new_title: Nouveau suivi
+    new_subtitle: Choisissez un type de suivi, une date d'arrêt — et le temps travaille
+      pour vous.
+    preset_label: Type de suivi
+    custom_preset: Créer le vôtre
+    name_label: Nom du suivi
+    color_label: Couleur
+    quit_at_label: Date d'arrêt
+    quit_at_hint: 'Vous pouvez choisir une date passée : votre compteur démarre à
+      cette date.'
+    create_submit: Démarrer mon suivi
+    created: Suivi « %{name} » créé. Votre compteur a commencé.
+    updated: Suivi mis à jour.
+    destroyed: Suivi supprimé.
+    paused: Suivi en pause. Votre compteur reprendra où il s'était arrêté.
+    resumed: Suivi repris.
+    restarted: Nouveau départ. Votre historique et vos étapes restent intacts.
+    closed: 'Suivi clos. Record conservé : %{best} jours.'
+    your_progress: Votre progression
+    personal_best: 'Record personnel : %{days} j'
+    milestones: Étapes
+    log_consumption: Noter un écart
+    history: Historique récent
+    edit: Modifier
+    pause: Mettre en pause
+    resume: Reprendre
+    restart: Repartir de zéro
+    close: Clore ce suivi
+    restart_confirm: Repartir de zéro ? Votre historique et vos étapes franchies seront
+      conservés — seul le compteur repart de maintenant.
+    close_confirm: Clore ce suivi ? Vous conserverez l'historique et votre record
+      personnel.
+    decision_zone: Zone de décision
+    decision_help: Un écart ne nécessite jamais de repartir de zéro. Ces actions sont
+      volontairement explicites.
+    shared_view: Vue partagée par le propriétaire
   consumptions:
-    when: "Quand"
-    quantity: "Quantité"
-    unit: "Unité"
-    note: "Note (facultatif)"
-    submit: "Enregistrer l'écart"
-    created: "Écart enregistré. Votre compteur continue — un écart est une donnée, pas un échec."
-    invalid: "Enregistrement impossible : vérifiez la date."
-    destroyed: "Écart supprimé."
-    reassurance: "Noter un écart ne remet pas votre compteur à zéro."
-    empty: "Aucun écart noté. Votre compteur avance."
-    delete: "Supprimer"
+    when: Quand
+    quantity: Quantité
+    unit: Unité
+    note: Note (facultatif)
+    submit: Enregistrer l'écart
+    created: Écart enregistré. Votre compteur continue — un écart est une donnée,
+      pas un échec.
+    invalid: 'Enregistrement impossible : vérifiez la date.'
+    destroyed: Écart supprimé.
+    reassurance: Noter un écart ne remet pas votre compteur à zéro.
+    empty: Aucun écart noté. Votre compteur avance.
+    delete: Supprimer
   calendar:
-    clean: "Sans écart"
-    slip: "Écart"
+    clean: Sans écart
+    slip: Écart
   settings:
-    title: "Réglages"
-    profile: "Profil"
-    email: "E-mail"
-    display_name: "Nom d'affichage"
-    display_name_hint: "Visible uniquement par les personnes que vous autorisez."
-    phone: "Téléphone"
-    phone_hint: "Uniquement pour les notifications SMS (facultatif)."
-    anonymous: "Rester anonyme auprès des aidants"
-    save: "Enregistrer"
-    updated: "Réglages enregistrés."
-    data: "Mes données"
-    data_help: "Téléchargez l'intégralité de vos données au format JSON."
-    export: "Exporter mes données"
-    danger_zone: "Suppression du compte"
-    deletion_help: "La suppression est définitive : suivis, historique, messages et partages sont effacés. Les personnes autorisées perdent immédiatement l'accès."
-    delete_account: "Supprimer mon compte"
-    delete_confirm: "Supprimer définitivement votre compte et toutes vos données ? Cette action est irréversible."
-    account_deleted: "Votre compte et vos données ont été supprimés."
+    title: Réglages
+    profile: Profil
+    email: E-mail
+    display_name: Nom d'affichage
+    display_name_hint: Visible uniquement par les personnes que vous autorisez.
+    phone: Téléphone
+    phone_hint: Uniquement pour les notifications SMS (facultatif).
+    anonymous: Rester anonyme auprès des aidants
+    save: Enregistrer
+    updated: Réglages enregistrés.
+    data: Mes données
+    data_help: Téléchargez l'intégralité de vos données au format JSON.
+    export: Exporter mes données
+    danger_zone: Suppression du compte
+    deletion_help: 'La suppression est définitive : suivis, historique, messages et
+      partages sont effacés. Les personnes autorisées perdent immédiatement l''accès.'
+    delete_account: Supprimer mon compte
+    delete_confirm: Supprimer définitivement votre compte et toutes vos données ?
+      Cette action est irréversible.
+    account_deleted: Votre compte et vos données ont été supprimés.
+    bio: Présentation (visible sur le réseau d'aidants)
+    bio_hint: Décrivez votre expérience d'accompagnement en quelques lignes.
+    notifications: Notifications
+    notifications_help: Choisissez, événement par événement, les canaux qui vous conviennent.
+      Les SMS nécessitent un numéro de téléphone.
+    chan_in_app: Sur le site
+    chan_email: E-mail
+    chan_sms: SMS
+    prefs_updated: Préférences de notification enregistrées.
+    events:
+      milestone_reached: Étape franchie
+      consumption_logged: Écart noté (votre entourage)
+      new_message: Nouveau message
+      invitation: Invitation ou demande d'accompagnement
+      grant_change: Modification de mes accès
+      share_viewed: Mon calendrier partagé a été consulté
   date:
     formats:
       long: "%d %B %Y"
       short: "%d %b"
-    month_names: [~, janvier, février, mars, avril, mai, juin, juillet, août, septembre, octobre, novembre, décembre]
-    abbr_month_names: [~, jan., fév., mar., avr., mai, juin, juil., août, sept., oct., nov., déc.]
-    day_names: [dimanche, lundi, mardi, mercredi, jeudi, vendredi, samedi]
-    abbr_day_names: [dim., lun., mar., mer., jeu., ven., sam.]
+    month_names:
+    -
+    - janvier
+    - février
+    - mars
+    - avril
+    - mai
+    - juin
+    - juillet
+    - août
+    - septembre
+    - octobre
+    - novembre
+    - décembre
+    abbr_month_names:
+    -
+    - jan.
+    - fév.
+    - mar.
+    - avr.
+    - mai
+    - juin
+    - juil.
+    - août
+    - sept.
+    - oct.
+    - nov.
+    - déc.
+    day_names:
+    - dimanche
+    - lundi
+    - mardi
+    - mercredi
+    - jeudi
+    - vendredi
+    - samedi
+    abbr_day_names:
+    - dim.
+    - lun.
+    - mar.
+    - mer.
+    - jeu.
+    - ven.
+    - sam.
   time:
     formats:
       long: "%d %B %Y à %H:%M"
       short: "%d %b %H:%M"
     units:
-      day: "jour"
-      days: "jours"
-      months: "mois"
+      day: jour
+      days: jours
+      months: mois
   membership:
     kinds:
-      aidant: "Aidant"
-      proche: "Proche"
-      soignant: "Soignant"
+      aidant: Aidant
+      proche: Proche
+      soignant: Soignant
   connections:
-    title: "Entourage & partage"
-    subtitle: "Vous décidez exactement qui voit quoi — et vous révoquez en un geste."
-    invite_title: "Inviter une personne"
-    email_label: "E-mail de la personne"
-    kind_label: "Rôle"
-    invite_help: "La personne doit avoir un compte Ronaitre. Elle recevra un e-mail d'invitation."
-    invite_submit: "Envoyer l'invitation"
-    no_account: "Aucun compte Ronaitre pour %{email}. Cette personne doit d'abord créer un compte."
-    self_error: "Vous ne pouvez pas vous inviter vous-même."
-    already_connected: "Cette personne est déjà dans votre entourage."
-    invited: "Invitation envoyée à %{email} (rôle : %{kind})."
-    updated: "Accès mis à jour."
-    revoked: "Accès de %{name} révoqué."
-    network_title: "Réseau d'aidants"
-    network_help: "Des aidants inscrits sur Ronaitre, disponibles pour vous soutenir au quotidien."
-    network_cta: "Découvrir le réseau d'aidants"
-    shares_title: "Liens de partage par suivi"
-    shares_help: "Créez un lien par suivi depuis la page du suivi concerné."
-    active_links: "actifs"
-    my_connections: "Mes connexions"
-    empty: "Personne pour l'instant. Invitez un proche, un soignant, ou demandez à un aidant."
-    waiting: "En attente"
-    active_badge: "Actif"
-    revoked_badge: "Révoqué"
-    revoke_btn: "Révoquer"
-    revoke_confirm: "Révoquer cet accès ? La personne perd immédiatement tout accès."
-    grants_title: "Ce que cette personne peut voir"
-    grant_details: "Voir le détail des écarts"
-    grant_message: "Messagerie autorisée"
-    save_grants: "Enregistrer les accès"
+    title: Entourage & partage
+    subtitle: Vous décidez exactement qui voit quoi — et vous révoquez en un geste.
+    invite_title: Inviter une personne
+    email_label: E-mail de la personne
+    kind_label: Rôle
+    invite_help: La personne doit avoir un compte Ronaitre. Elle recevra un e-mail
+      d'invitation.
+    invite_submit: Envoyer l'invitation
+    no_account: Aucun compte Ronaitre pour %{email}. Cette personne doit d'abord créer
+      un compte.
+    self_error: Vous ne pouvez pas vous inviter vous-même.
+    already_connected: Cette personne est déjà dans votre entourage.
+    invited: 'Invitation envoyée à %{email} (rôle : %{kind}).'
+    updated: Accès mis à jour.
+    revoked: Accès de %{name} révoqué.
+    network_title: Réseau d'aidants
+    network_help: Des aidants inscrits sur Ronaitre, disponibles pour vous soutenir
+      au quotidien.
+    network_cta: Découvrir le réseau d'aidants
+    shares_title: Liens de partage par suivi
+    shares_help: Créez un lien par suivi depuis la page du suivi concerné.
+    active_links: actifs
+    my_connections: Mes connexions
+    empty: Personne pour l'instant. Invitez un proche, un soignant, ou demandez à
+      un aidant.
+    waiting: En attente
+    active_badge: Actif
+    revoked_badge: Révoqué
+    revoke_btn: Révoquer
+    revoke_confirm: Révoquer cet accès ? La personne perd immédiatement tout accès.
+    grants_title: Ce que cette personne peut voir
+    grant_details: Voir le détail des écarts
+    grant_message: Messagerie autorisée
+    save_grants: Enregistrer les accès
+    email_blank: Merci de renseigner une adresse e-mail.
+    invited_no_account: 'Invitation envoyée à %{email} (rôle : %{kind}). La personne
+      créera son compte via le lien reçu.'
   invitations:
-    title: "Vous êtes invité"
-    invites_you: "vous invite en tant que %{kind} à suivre sa progression."
-    explanation: "Vous ne verrez que ce que cette personne décide de partager, et elle peut révoquer l'accès à tout moment."
-    accept: "Accepter"
-    decline: "Refuser"
-    accepted: "Invitation acceptée. Merci d'accompagner cette personne."
-    declined: "Invitation refusée."
-    wrong_account: "Cette invitation est destinée à %{email}. Connectez-vous avec ce compte."
+    title: Vous êtes invité
+    invites_you: vous invite en tant que %{kind} à suivre sa progression.
+    explanation: Vous ne verrez que ce que cette personne décide de partager, et elle
+      peut révoquer l'accès à tout moment.
+    accept: Accepter
+    decline: Refuser
+    accepted: Invitation acceptée. Merci d'accompagner cette personne.
+    declined: Invitation refusée.
+    wrong_account: Cette invitation est destinée à %{email}. Connectez-vous avec ce
+      compte.
   helper:
-    title: "Mes suivis accompagnés"
-    subtitle: "Vous ne voyez que ce qui vous a été explicitement autorisé."
-    pending: "Demandes en attente"
+    title: Mes suivis accompagnés
+    subtitle: Vous ne voyez que ce qui vous a été explicitement autorisé.
+    pending: Demandes en attente
     requests_help: "%{kind} souhaite vous accompagner."
-    empty: "Aucun suivi accompagné pour l'instant."
-    anonymous_person: "Une personne accompagnée"
-    last_slip: "Dernier écart :"
-    stop_confirm: "Ne plus accompagner cette personne ?"
-    next_step: "Prochaine étape"
+    empty: Aucun suivi accompagné pour l'instant.
+    anonymous_person: Une personne accompagnée
+    last_slip: 'Dernier écart :'
+    stop_confirm: Ne plus accompagner cette personne ?
+    next_step: Prochaine étape
   share_links:
-    title: "Partager le calendrier"
-    help: "Lien en lecture seule, protégé par mot de passe facultatif. Révocable à tout moment."
-    password_label: "Mot de passe (facultatif)"
-    password_hint: "Laissez vide pour un accès libre."
-    create: "Créer un lien de partage"
-    created: "Lien de partage créé."
-    invalid: "Création impossible."
-    revoke: "Révoquer"
-    revoked: "Lien révoqué."
-    views: "vues"
-    protected: "protégé"
-    open: "Ouvrir"
+    title: Partager le calendrier
+    help: Lien en lecture seule, protégé par mot de passe facultatif. Révocable à
+      tout moment.
+    password_label: Mot de passe (facultatif)
+    password_hint: Laissez vide pour un accès libre.
+    create: Créer un lien de partage
+    created: Lien de partage créé.
+    invalid: Création impossible.
+    revoke: Révoquer
+    revoked: Lien révoqué.
+    views: vues
+    protected: protégé
+    open: Ouvrir
   aidants:
-    title: "Le réseau d'aidants"
-    subtitle: "Des aidants inscrits sur Ronaitre, disponibles pour soutenir les personnes qui suivent leurs consommations — anonymement si vous le préférez."
-    empty_title: "Le réseau s'ouvre bientôt"
-    empty_body: "Les premiers aidants sont en cours de validation. Créez votre compte pour être prévenu."
-    anonymous_name: "Aidant anonyme"
-    no_bio: "Aidant disponible sur Ronaitre."
-    disclaimer: "Les aidants du réseau ne sont pas des professionnels de santé. En cas de besoin médical, consultez un soignant ou un CSAPA."
+    title: Le réseau d'aidants
+    subtitle: Des aidants inscrits sur Ronaitre, disponibles pour soutenir les personnes
+      qui suivent leurs consommations — anonymement si vous le préférez.
+    empty_title: Le réseau s'ouvre bientôt
+    empty_body: Les premiers aidants sont en cours de validation. Créez votre compte
+      pour être prévenu.
+    anonymous_name: Aidant anonyme
+    no_bio: Aidant disponible sur Ronaitre.
+    disclaimer: Les aidants du réseau ne sont pas des professionnels de santé. En
+      cas de besoin médical, consultez un soignant ou un CSAPA.
+    request_help: Demander de l'aide
+    request_pending: Demande envoyée
+    requested: Demande envoyée. L'aidant pourra l'accepter depuis son espace.
+    already_requested: Vous avez déjà une demande en cours avec cet aidant.
+    self_request: Vous ne pouvez pas vous choisir comme aidant.
+    signup_to_request: Créer un compte pour demander de l'aide
+    its_you: C'est vous
   shared_calendar:
-    readonly: "Calendrier partagé — lecture seule"
-    footer: "Partagé avec"
-    disclaimer: "Ce calendrier est partagé volontairement par son propriétaire. Il ne montre jamais les notes personnelles."
-    gate_title: "Calendrier protégé"
-    gate_help: "Le propriétaire a protégé ce calendrier par mot de passe."
-    password: "Mot de passe"
-    unlock: "Voir le calendrier"
-    wrong_password: "Mot de passe incorrect."
-    revoked_title: "Partage indisponible"
-    revoked_body: "Ce lien a été révoqué ou a expiré."
+    readonly: Calendrier partagé — lecture seule
+    footer: Partagé avec
+    disclaimer: Ce calendrier est partagé volontairement par son propriétaire. Il
+      ne montre jamais les notes personnelles.
+    gate_title: Calendrier protégé
+    gate_help: Le propriétaire a protégé ce calendrier par mot de passe.
+    password: Mot de passe
+    unlock: Voir le calendrier
+    wrong_password: Mot de passe incorrect.
+    revoked_title: Partage indisponible
+    revoked_body: Ce lien a été révoqué ou a expiré.
   messages:
-    title: "Messagerie"
-    subtitle: "Échangez avec les personnes que vous avez autorisées — ou celles qui vous accompagnent."
-    empty: "Aucune conversation. Autorisez la messagerie pour une connexion dans « Entourage »."
-    with: "Accompagnement %{kind}"
-    back: "Retour"
-    start: "Envoyez le premier message — bienveillant, toujours."
-    placeholder: "Votre message…"
-    send: "Envoyer"
-    invalid: "Message vide ou trop long (2000 caractères max)."
+    title: Messagerie
+    subtitle: Échangez avec les personnes que vous avez autorisées — ou celles qui
+      vous accompagnent.
+    empty: Aucune conversation. Autorisez la messagerie pour une connexion dans «
+      Entourage ».
+    with: Accompagnement %{kind}
+    back: Retour
+    start: Envoyez le premier message — bienveillant, toujours.
+    placeholder: Votre message…
+    send: Envoyer
+    invalid: Message vide ou trop long (2000 caractères max).
+  dashboard:
+    summary:
+      one: 1 suivi actif · %{days} jours d'abstinence cumulés.
+      other: "%{count} suivis actifs · %{days} jours d'abstinence cumulés."
+  milestones:
+    add_label: Nouvelle étape
+    label_placeholder: 'Ex. : 2 mois'
+    add_days: Jours
+    add_submit: Ajouter
+    created: Étape personnalisée ajoutée.
+    invalid: 'Étape invalide : un libellé et un nombre de jours sont requis.'
+    destroyed: Étape supprimée.
+  notifications:
+    title: Notifications
+    empty: Aucune notification pour l'instant.
+    events:
+      generic: Nouvelle notification
+      milestone: 'Étape franchie sur %{name} : %{label} !'
+      new_message: Nouveau message de %{name}.
+      share_viewed: Quelqu'un a consulté votre calendrier partagé.
+      aidant_request: Une personne aimerait vous avoir comme aidant.
+      granted_by_owner: Vos accès de suivi ont été mis à jour.
+      revoked_by_owner: Vos accès de suivi ont été révoqués.
+      member_accepted: Votre invitation a été acceptée.
+    new_message: Nouveau message de %{name} sur Ronaitre.
+    new_message_sms: 'Ronaitre : nouveau message de %{name}.'
+    milestone: 'Étape franchie sur %{name} : %{label} !'
+    milestone_sms: 'Ronaitre : bravo, étape %{label} franchie !'
+    revoked_by_owner: Vos accès ont été révoqués par le propriétaire.
+    granted_by_owner: Vos accès de suivi ont été mis à jour.
+    member_accepted: Votre invitation a été acceptée.
+    aidant_request: Une personne aimerait vous avoir comme aidant.
+    share_viewed: Votre calendrier partagé a été consulté.
+  chat:
+    title: Compagnon de soutien
+    subtitle: Disponible à tout moment — sans jugement, sans faire la leçon.
+    placeholder: Écrivez ce que vous ressentez…
+    send: Envoyer
+    start: Bonjour. Ici, vous pouvez tout écrire — rien ne sort de cet espace.
+    delete_history: Effacer l'historique
+    delete_confirm: Effacer toute la conversation ? Cette action est définitive.
+    history_deleted: Historique effacé.
+    empty: Message vide.
+    rate_limited: Trop de messages envoyés. Faites une pause, on sera là à votre retour.
+    crisis_title: Besoin d'aide maintenant ?
+    disclaimer: Ce compagnon vous soutient mais ne remplace pas un professionnel de
+      santé.
+  csapa:
+    title: Annuaire des CSAPA
+    subtitle: Centres de Soin, d'Accompagnement et de Prévention en Addictologie —
+      accueil médical, social et psychologique, anonymat possible.
+    search_label: Ville ou département
+    search_submit: Rechercher
+    empty: 'Aucune structure trouvée pour cette recherche. Les lignes nationales restent
+      disponibles : 39 89 · 0 800 23 13 13 · 0 980 980 930.'
+    sources: Données d'exemple à des fins techniques — la production utilisera l'annuaire
+      public Drogues Info Service, avec attribution et mise à jour mensuelle.

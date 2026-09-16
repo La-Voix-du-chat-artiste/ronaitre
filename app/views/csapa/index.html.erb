@@ -1,0 +1,40 @@
+<% content_for :title, "Annuaire CSAPA — Ronaitre" %>
+
+<section class="mx-auto max-w-4xl px-6 py-14">
+  <h1 class="text-3xl font-extrabold tracking-tight sm:text-4xl"><%= t("csapa.title") %></h1>
+  <p class="mt-3 max-w-2xl text-muted-foreground"><%= t("csapa.subtitle") %></p>
+
+  <form class="mt-8 flex flex-wrap items-end gap-3" method="get" action="<%= csapa_path %>">
+    <div class="grow max-w-xs">
+      <%= render FieldComponent.new(label: t("csapa.search_label"), for_attr: "csapa_q") do %>
+        <input type="search" id="csapa_q" name="q" value="<%= params[:q] %>"
+               class="h-10 w-full rounded-lg border border-input bg-card px-3 text-sm focus-visible:outline-2 focus-visible:outline-ring" />
+      <% end %>
+    </div>
+    <button type="submit" class="inline-flex h-10 items-center rounded-lg bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-sm hover:bg-primary/90">
+      <%= t("csapa.search_submit") %>
+    </button>
+  </form>
+
+  <% if @facilities.empty? %>
+    <%= render CardComponent.new(html: { class: "mt-8 p-10 text-center text-muted-foreground" }) do %>
+      <%= t("csapa.empty") %>
+    <% end %>
+  <% else %>
+    <div class="mt-8 grid gap-4 sm:grid-cols-2">
+      <% @facilities.each do |facility| %>
+        <%= render CardComponent.new(html: { class: "p-6" }) do %>
+          <p class="font-bold"><%= facility.name %></p>
+          <p class="mt-1.5 text-sm text-muted-foreground"><%= facility.address %><br><%= facility.zip %> <%= facility.city %></p>
+          <% if facility.phone %>
+            <p class="mt-2 text-sm"><a href="tel:<%= facility.phone.delete(" ") %>" class="font-semibold text-primary hover:underline"><%= facility.phone %></a></p>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= render EncartComponent.new(variant: :help, html: { class: "mt-10" }) do %>
+    <%= t("csapa.sources") %>
+  <% end %>
+</section>
