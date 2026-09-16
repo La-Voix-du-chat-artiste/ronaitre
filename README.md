@@ -2,7 +2,17 @@
 
 **Suivi d'abstinence privé, jour après jour.**
 
-Réimplementation technique d'[Addict Helper](https://addict-helper.ronanbch.com/) en Ruby on Rails — voir [`../PRD.md`](../PRD.md) (spécifications produit) et [`../PLAN.md`](../PLAN.md) (plan d'implémentation). Journal de développement : [`../DevLog.md`](../DevLog.md).
+Réimplementation technique d'[Addict Helper](https://addict-helper.ronanbch.com/) en Ruby on Rails : application monolithe Rails 8.1, Hotwire uniquement, SQLite, déployée avec Kamal.
+
+## Documentation
+
+| Document | Contenu |
+|---|---|
+| [`docs/PRD.md`](docs/PRD.md) | Spécifications produit v1.0 — périmètre, design system (§6), matrice de permissions (§7), pages (§9), modèle de données (§12) |
+| [`docs/PLAN.md`](docs/PLAN.md) | Plan d'implémentation par phases (0→6) avec tâches et critères d'acceptation |
+| [`docs/DevLog.md`](docs/DevLog.md) | Journal de développement — chronologie, bugs & pièges, décisions techniques |
+| [`docs/Audit-Graphique-UX-Addict-Helper.pdf`](docs/Audit-Graphique-UX-Addict-Helper.pdf) | Audit UX du produit d'origine (correctifs appliqués) |
+| [`docs/Audit-Marketing-SEO-Addict-Helper.pdf`](docs/Audit-Marketing-SEO-Addict-Helper.pdf) | Audit SEO/marketing du produit d'origine (correctifs appliqués) |
 
 ## Stack
 
@@ -26,7 +36,7 @@ bin/setup        # gems + base + préparation
 bin/dev          # serveur (http://localhost:3000) + build tailwind --watch
 ```
 
-- **Styleguide du design system** : http://localhost:3000/internal/styleguide (dev/test uniquement) — à comparer à `../docs/screenshot.png`.
+- **Styleguide du design system** : http://localhost:3000/internal/styleguide (dev/test uniquement).
 - Toutes les chaînes UI vivent dans `config/locales/fr.yml` (français uniquement, `html lang="fr"`).
 
 ## Design system (PRD §6 — ne pas modifier sans décision produit)
@@ -101,5 +111,5 @@ Tests de sécurité non négociables (PRD §7, PLAN Phase 3) : `test/controllers
 
 ## État & suite
 
-- Phases 0→5 du plan réalisées (site public, suivi, entourage, messagerie, chatbot) + socle Phase 6 (CSAPA).
+- Phases 0→5 du plan réalisées (site public, suivi, entourage, messagerie, chatbot) + socle Phase 6 (CSAPA) — détail dans [`docs/DevLog.md`](docs/DevLog.md).
 - Reste (décisions produit) : domaine OQ-1, pages guides SEO (rédaction), témoignages réels, newsletter, analytics (OQ-4), vrais providers SMS/IA.
