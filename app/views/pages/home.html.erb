@@ -170,10 +170,10 @@
     <div class="mt-12 grid gap-6 md:grid-cols-3">
       <% t("landing.testimonials.items").each do |item| %>
         <figure class="flex h-full flex-col rounded-lg border border-border bg-card p-7 shadow-sm">
-          <blockquote class="flex-1 leading-relaxed text-foreground">«&nbsp;<%= item["quote"] %>&nbsp;»</blockquote>
+          <blockquote class="flex-1 leading-relaxed text-foreground">«&nbsp;<%= item[:quote] %>&nbsp;»</blockquote>
           <figcaption class="mt-5">
-            <p class="text-sm font-bold"><%= item["author"] %></p>
-            <p class="text-sm text-muted-foreground"><%= item["context"] %></p>
+            <p class="text-sm font-bold"><%= item[:author] %></p>
+            <p class="text-sm text-muted-foreground"><%= item[:context] %></p>
           </figcaption>
         </figure>
       <% end %>
@@ -190,10 +190,10 @@
       <% t("landing.faq.items").each do |item| %>
         <details class="group rounded-lg border border-border bg-card px-5 open:shadow-sm">
           <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-left font-semibold [&::-webkit-details-marker]:hidden">
-            <%= item["question"] %>
+            <%= item[:question] %>
             <span class="text-xl text-muted-foreground transition group-open:rotate-45" aria-hidden="true">+</span>
           </summary>
-          <p class="pb-5 leading-relaxed text-muted-foreground"><%= item["answer"] %></p>
+          <p class="pb-5 leading-relaxed text-muted-foreground"><%= item[:answer] %></p>
         </details>
       <% end %>
     </div>

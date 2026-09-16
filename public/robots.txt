@@ -1,1 +1,11 @@
-# See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+User-agent: *
+Allow: /
+Disallow: /tracks
+Disallow: /dashboard
+Disallow: /conversations
+Disallow: /chat
+Disallow: /settings
+Disallow: /helper
+Disallow: /c/
+
+Sitemap: https://ronaitre.example.com/sitemap.xml

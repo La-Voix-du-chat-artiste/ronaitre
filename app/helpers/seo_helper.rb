@@ -34,8 +34,8 @@ module SeoHelper
     items = t("landing.faq.items").map do |item|
       {
         "@type" => "Question",
-        "name" => item["question"],
-        "acceptedAnswer" => { "@type" => "Answer", "text" => item["answer"] }
+        "name" => item[:question],
+        "acceptedAnswer" => { "@type" => "Answer", "text" => item[:answer] }
       }
     end
     {

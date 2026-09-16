@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   get "cgu", to: "legal#terms"
   get "avis", to: "feedbacks#new"
   post "avis", to: "feedbacks#create"
+  get "sitemap.xml", to: "sitemaps#show", defaults: { format: "xml" }
 end
