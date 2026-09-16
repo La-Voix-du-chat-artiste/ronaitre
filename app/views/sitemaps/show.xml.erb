@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <% @urls.each do |url| %>
+  <% @entries.each do |entry| %>
   <url>
-    <loc><%= url %></loc>
+    <loc><%= entry[:loc] %></loc>
     <changefreq>weekly</changefreq>
+    <priority><%= entry[:priority] %></priority>
   </url>
   <% end %>
 </urlset>

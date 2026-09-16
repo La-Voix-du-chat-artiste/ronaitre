@@ -2,10 +2,17 @@ User-agent: *
 Allow: /
 Disallow: /tracks
 Disallow: /dashboard
+Disallow: /connections
 Disallow: /conversations
-Disallow: /chat
+Disallow: /messages
+Disallow: /notifications
 Disallow: /settings
 Disallow: /helper
+Disallow: /invitations
+Disallow: /internal
 Disallow: /c/
+
+# LLM crawlers welcome — product facts in /llms.txt
+# Private content (calendriers partagés, app) est protégé et noindex.
 
 Sitemap: https://ronaitre.example.com/sitemap.xml

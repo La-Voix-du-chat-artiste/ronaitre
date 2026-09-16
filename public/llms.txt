@@ -1,0 +1,46 @@
+# Ronaitre
+
+> Ronaitre (ex-Addict Helper) est une application web française et gratuite de suivi d'abstinence : la personne choisit une addiction et une date d'arrêt, un compteur mesure son temps d'abstinence en temps réel (à la seconde), chaque étape franchie (24 h, 7 jours, 1 mois…) est célébrée, et les écarts —rechutes partielles— peuvent être notés **sans jamais remettre le compteur à zéro**. L'utilisateur peut partager sa progression, à la carte et de façon révocable, avec des proches, des aidants ou des soignants.
+
+Ronaitre est un outil d'accompagnement au quotidien. Il n'est **pas** un dispositif médical et ne remplace pas un avis ou un suivi professionnel de santé.
+
+## Pages publiques
+
+- [Accueil](https://ronaitre.example.com/) : présentation du produit, comment ça marche, engagements (privé par défaut, temps réel, pensé pour la rechute, gratuit), témoignages (maquette de démonstration), FAQ.
+- [Réseau d'aidants](https://ronaitre.example.com/aidants) : aidants inscrits sur l'application, disponibles pour soutenir les personnes qui suivent leurs consommations.
+- [Annuaire des CSAPA](https://ronaitre.example.com/csapa) : Centres de Soin, d'Accompagnement et de Prévention en Addictologie.
+- [Politique de confidentialité](https://ronaitre.example.com/confidentialite)
+- [Mentions légales](https://ronaitre.example.com/mentions-legales)
+- [Conditions d'utilisation](https://ronaitre.example.com/cgu)
+
+## Fonctionnalités principales
+
+- **Suivi multi-addictions** : tabac, alcool, cannabis, jeux d'argent, écrans, ou suivi personnalisé — plusieurs suivis en parallèle.
+- **Compteur d'abstinence temps réel** : mois, jours, heures, minutes, secondes ; record personnel conservé même après un redémarrage volontaire.
+- **Étapes (milestones)** : paliers prédéfinis par type d'addiction + étapes personnalisées ; célébration et notifications.
+- **Écarts sans jugement** : noter une consommation sans réinitialiser le compteur ; historique et calendrier mensuel (jours sans écart / avec écart).
+- **Entourage à la carte** : invitations de proches et soignants, réseau d'aidants, permissions fines par suivi (compteur, détail des écarts, messagerie), révocation en un geste.
+- **Calendrier partagé en lecture seule** : lien protégé par mot de passe facultatif, révocable à tout moment ; partage possible par suivi ou pour tout le compte.
+- **Messagerie intégrée** : conversations temps réel entre la personne suivie et ses accompagnants, notification e-mail.
+- **Compagnon de soutien (IA)** : disponible 24h/24 ; en cas de détection de crise, affiche immédiatement les ressources d'urgence (3114, 15/112, lignes nationales).
+- **Notifications configurables** : par événement et par canal (sur le site, e-mail, SMS).
+- **Droits des personnes** : export JSON complet et suppression définitive du compte depuis les réglages.
+
+## Ressources d'aide citées par Ronaitre
+
+- Tabac Info Service — 39 89 (gratuit)
+- Drogues Info Service — 0 800 23 13 13 (gratuit et anonyme, 7 j/7)
+- Alcool Info Service — 0 980 980 930 (anonyme, 7 j/7)
+- 3114 — numéro national de prévention du suicide (24h/24)
+- En urgence vitale : 15 ou 112
+
+## Faits techniques
+
+- Application web responsive (aucune installation), en français.
+- Aucune revente de données, pas de publicité, pas de fil d'actualité.
+- Les données personnelles ne sont visibles par un accompagnant que si le propriétaire l'autorise explicitement, suivi par suivi, et il peut tout révoquer.
+
+## Contact
+
+- Feedback : page « Donner un avis » depuis le site.
+- Contact : contact@ronaitre.example

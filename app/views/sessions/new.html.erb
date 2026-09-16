@@ -1,3 +1,6 @@
+<% content_for :title, "#{I18n.t(params[:mode] == "signup" ? 'auth.signup_title' : 'auth.signin_title')} — Ronaitre" %>
+<% content_for :robots_noindex, true %>
+
 <div class="mx-auto flex min-h-[70vh] w-full max-w-md flex-col justify-center px-6 py-14">
   <% if params[:mode] == "signup" %>
     <h1 class="text-3xl font-extrabold tracking-tight"><%= t("auth.signup_title") %></h1>
