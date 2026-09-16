@@ -1,0 +1,83 @@
+fr:
+  app:
+    name: "Ronaitre"
+    tagline: "Suivi d'abstinence privé, jour après jour."
+  nav:
+    product: "Le produit"
+    how_it_works: "Comment ça marche"
+    circle: "Entourage"
+    testimonials: "Témoignages"
+    faq: "FAQ"
+    start_free: "Commencer gratuitement"
+    sign_in: "Se connecter"
+    sign_up: "Créer un compte"
+    dashboard: "Mon tableau de bord"
+    sign_out: "Se déconnecter"
+  landing:
+    help_banner:
+      title: "Besoin d'aide maintenant ?"
+      csapa: "Trouver un CSAPA"
+    hero:
+      badge: "Reprenez le contrôle"
+      title: "Suivez votre progrès, jour après jour."
+      subtitle: "Ronaitre vous aide à suivre vos addictions, mesurer votre temps d'abstinence en temps réel et célébrer chaque étape franchie. Avec le soutien d'aidants, de proches et de soignants."
+      secondary_cta: "J'ai déjà un compte"
+      reassurance: "Gratuit · Sans engagement · Vos données restent privées"
+      demo_track: "Tabac · Suivi actif"
+      demo_days: "jours"
+      demo_next: "3 mois dans 43 j"
+    steps:
+      title: "Trois pas. Une minute. Zéro jugement."
+      subtitle: "Vous n'avez rien à expliquer, rien à prouver. Vous choisissez un suivi, et le temps travaille pour vous."
+      one_title: "Créez votre compte"
+      one_body: "Un e-mail, un mot de passe, c'est tout. Aucune question intrusive, aucune carte bancaire."
+      two_title: "Choisissez votre suivi"
+      two_body: "Tabac, alcool, cannabis, jeux, écrans… ou créez le vôtre. Vous pouvez en suivre plusieurs en parallèle."
+      three_title: "Laissez le temps compter"
+      three_body: "Votre compteur avance en temps réel et chaque étape franchie est célébrée — 24 h, 7 jours, 1 mois."
+    product:
+      title: "Conçu pour les jours faciles, et les autres."
+      subtitle: "Une interface épurée qui met votre parcours au centre — et qui reste disponible à 3 h du matin, quand l'envie est la plus forte."
+    why:
+      title: "Quatre engagements, tenus."
+      private_title: "Privé par défaut"
+      private_body: "Vos données vous appartiennent : pas de revente, pas de publicité, pas de fil d'actualité. Seules les personnes que vous associez explicitement voient votre progression — et vous pouvez tout révoquer."
+      realtime_title: "Temps réel, vraiment"
+      realtime_body: "Chaque seconde compte. Le compteur avance en direct, même quand vous ne regardez pas : vos jours sont vos jours, à la seconde près."
+      relapse_title: "Pensé pour la rechute"
+      relapse_body: "Repartir ne remet pas votre vie à zéro. Votre historique reste, vos étapes aussi : un jour difficile est une donnée, pas un échec."
+      free_title: "Gratuit, sans piège"
+      free_body: "Pas d'essai limité, pas de fonctionnalité verrouillée. Commencez en moins d'une minute, sans carte bancaire ni engagement."
+    circle:
+      title: "On avance mieux à plusieurs."
+      subtitle: "Ronaitre relie votre parcours aux personnes qui veulent vous voir réussir — avec votre accord, et rien qu'avec lui."
+      helpers_title: "Des aidants"
+      helpers_body: "Échangez avec des aidants inscrits sur l'application, disponibles pour vous soutenir au quotidien — anonymement si vous le préférez."
+      loved_ones_title: "Vos proches"
+      loved_ones_body: "Partagez votre progression avec les personnes de votre choix pour qu'elles puissent vous encourager à chaque étape franchie."
+      carers_title: "Des soignants"
+      carers_body: "Restez en lien avec un soignant qui suit votre parcours, ou trouvez une structure CSAPA près de chez vous via l'annuaire intégré."
+      csapa: "Trouver un CSAPA"
+      disclaimer: "Ronaitre est un outil d'accompagnement au quotidien. Il ne se substitue pas à un avis ou à un suivi médical. En cas de difficulté immédiate : Tabac Info Service (39 89, gratuit), Drogues Info Service (0 800 23 13 13, gratuit et anonyme, 7 j/7 de 8 h à 2 h), Alcool Info Service (0 980 980 930, anonyme, 7 j/7 de 8 h à 2 h)."
+    testimonials:
+      title: "Des parcours, pas des promesses."
+      demo_notice: "Maquette de démonstration — parcours illustratifs présentés pour montrer la mise en page de la section."
+    faq:
+      title: "Tout ce que vous n'osez pas demander."
+    final_cta:
+      title: "Le meilleur moment pour commencer, c'était hier. Le deuxième meilleur, c'est maintenant."
+      subtitle: "Créez votre compte en moins d'une minute. Votre premier jour commence dès maintenant — et cette fois, vous ne serez pas seul."
+    footer:
+      disclaimer: "Ronaitre n'est pas un dispositif médical et ne remplace pas un avis professionnel."
+      rights: "Tous droits réservés."
+  resources:
+    tobacco: "Tabac Info Service — 39 89"
+    drugs: "Drogues Info Service — 0 800 23 13 13"
+    alcohol: "Alcool Info Service — 0 980 980 930"
+    csapa: "Annuaire des CSAPA"
+  legal:
+    privacy: "Politique de confidentialité"
+    legal_notice: "Mentions légales"
+    terms: "Conditions d'utilisation"
+  feedback:
+    link: "Donner un avis"

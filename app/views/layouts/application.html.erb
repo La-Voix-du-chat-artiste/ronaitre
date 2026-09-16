@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= I18n.locale %>">
   <head>
-    <title><%= content_for(:title) || "Ronaitre" %></title>
+    <title><%= content_for(:title) || t("app.name") %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Ronaitre">
     <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#128f7e">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -23,8 +24,8 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="bg-background text-foreground min-h-screen">
+    <main id="contenu" class="flex min-h-screen flex-col">
       <%= yield %>
     </main>
   </body>

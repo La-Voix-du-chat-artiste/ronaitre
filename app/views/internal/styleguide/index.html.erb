@@ -1,0 +1,96 @@
+<%= tag.div(class: "mx-auto max-w-5xl px-6 py-14") do %>
+  <h1 class="text-4xl font-extrabold tracking-tight">Ronaitre — Styleguide</h1>
+  <p class="mt-2 text-muted-foreground">Design tokens PRD §6 — valider contre docs/screenshot.png (dev uniquement).</p>
+
+  <section class="mt-10">
+    <h2 class="mb-3 text-xl font-bold">Couleurs</h2>
+    <div class="grid grid-cols-3 gap-3 sm:grid-cols-6">
+      <% %w[background foreground card primary secondary muted accent destructive border ring mint salmon periwinkle periwinkle-light].each do |token| %>
+        <div class="overflow-hidden rounded-lg border border-border">
+          <div class="h-14 w-full" style="background: var(--color-<%= token %>);"></div>
+          <div class="p-2 text-xs font-medium"><%= token %></div>
+        </div>
+      <% end %>
+    </div>
+  </section>
+
+  <section class="mt-10">
+    <h2 class="mb-3 text-xl font-bold">Boutons</h2>
+    <div class="flex flex-wrap items-center gap-3">
+      <%= render ButtonComponent.new(variant: :primary, size: :lg) { "Commencer gratuitement" } %>
+      <%= render ButtonComponent.new(variant: :primary) { "Commencer gratuitement" } %>
+      <%= render ButtonComponent.new(variant: :inverted) { "Action primaire (in-app)" } %>
+      <%= render ButtonComponent.new(variant: :outline) { "J'ai déjà un compte" } %>
+      <%= render ButtonComponent.new(variant: :outline_muted) { "Se connecter" } %>
+      <%= render ButtonComponent.new(variant: :ghost) { "Annuler" } %>
+    </div>
+  </section>
+
+  <section class="mt-10">
+    <h2 class="mb-3 text-xl font-bold">Badges</h2>
+    <div class="flex flex-wrap items-center gap-3">
+      <%= render BadgeComponent.new { "J+47" } %>
+      <%= render BadgeComponent.new(variant: :secondary) { "Record personnel" } %>
+      <%= render BadgeComponent.new(variant: :mint) { "Suivi actif" } %>
+      <%= render BadgeComponent.new(variant: :muted) { "En pause" } %>
+      <%= render BadgeComponent.new(variant: :white) { "23 proches" } %>
+      <%= render BadgeComponent.new(variant: :destructive) { "Écart" } %>
+    </div>
+  </section>
+
+  <section class="mt-10">
+    <h2 class="mb-3 text-xl font-bold">Compteur (mono + tabular-nums)</h2>
+    <%= render CardComponent.new(html: { class: "p-8" }) do %>
+      <p class="text-sm font-medium text-muted-foreground">Tabac · Suivi actif</p>
+      <p class="mt-2 text-7xl font-extrabold tracking-tight text-primary">
+        47<span class="ml-2 text-2xl text-muted-foreground">jours</span>
+      </p>
+      <p class="counter-digits mt-3 text-3xl text-foreground">01:12:44</p>
+      <div class="mt-4 flex gap-2">
+        <span class="counter-digits rounded-lg bg-muted px-3 py-1.5 text-sm">J+1</span>
+        <span class="counter-digits rounded-lg bg-muted px-3 py-1.5 text-sm">J+7</span>
+        <span class="counter-digits rounded-lg bg-muted px-3 py-1.5 text-sm">J+30</span>
+      </div>
+    <% end %>
+  </section>
+
+  <section class="mt-10">
+    <h2 class="mb-3 text-xl font-bold">Encarts</h2>
+    <div class="space-y-3">
+      <%= render EncartComponent.new(variant: :help) do %>
+        <span class="font-semibold">Besoin d'aide maintenant ?</span>
+        Tabac Info Service 39 89 · Drogues Info Service 0 800 23 13 13 · Alcool Info Service 0 980 980 930
+      <% end %>
+      <%= render EncartComponent.new do %>
+        Gratuit · Sans engagement · Vos données restent privées
+      <% end %>
+    </div>
+  </section>
+
+  <section class="mt-10">
+    <h2 class="mb-3 text-xl font-bold">Titres de section</h2>
+    <%= render SectionHeadingComponent.new(eyebrow: "01 — Comment ça marche", title: "Trois pas. Une minute. Zéro jugement.", subtitle: "Vous n'avez rien à expliquer, rien à prouver.") %>
+  </section>
+
+  <section class="mt-10">
+    <h2 class="mb-3 text-xl font-bold">Logo & hero (skin du screenshot)</h2>
+    <%= render LogoComponent.new %>
+    <div class="mt-4 rounded-lg bg-primary p-10">
+      <%= render BadgeComponent.new(variant: :white) { "Reprenez le contrôle" } %>
+      <h3 class="mt-4 text-5xl font-extrabold tracking-tight text-white sm:text-6xl">Suivez votre progrès, jour après jour.</h3>
+      <div class="mt-6 flex gap-3">
+        <%= render ButtonComponent.new(variant: :primary, size: :lg, href: "#") { "Commencer gratuitement" } %>
+        <%= render ButtonComponent.new(variant: :outline, size: :lg, href: "#") { "J'ai déjà un compte" } %>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-10">
+    <h2 class="mb-3 text-xl font-bold">Formulaire</h2>
+    <div class="max-w-sm">
+      <%= render FieldComponent.new(label: "E-mail", for_attr: "sg-email", hint: "Vos données sont chiffrées et ne sont jamais partagées.") do %>
+        <input id="sg-email" type="email" class="h-10 w-full rounded-lg border border-input bg-card px-3 text-sm focus-visible:outline-2 focus-visible:outline-ring" />
+      <% end %>
+    </div>
+  </section>
+<% end %>

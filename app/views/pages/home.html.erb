@@ -1,0 +1,14 @@
+<%= tag.section(class: "bg-primary") do %>
+  <%= tag.div(class: "mx-auto max-w-6xl px-6 py-28") do %>
+    <%= render BadgeComponent.new(variant: :white) { t("landing.hero.badge") } %>
+    <%= tag.h1(t("landing.hero.title"), class: "mt-6 max-w-3xl text-5xl font-extrabold tracking-tight text-white sm:text-7xl sm:leading-none") %>
+    <%= tag.p(t("landing.hero.subtitle"), class: "mt-6 max-w-2xl text-lg text-white/85") %>
+    <%= tag.div(class: "mt-8 flex flex-wrap gap-3") do
+      safe_join([
+        render(ButtonComponent.new(variant: :primary, size: :lg, href: signup_path) { t("nav.start_free") }),
+        render(ButtonComponent.new(variant: :outline, size: :lg, href: auth_path) { t("landing.hero.secondary_cta") })
+      ])
+    end %>
+    <%= tag.p(t("landing.hero.reassurance"), class: "mt-5 text-sm text-white/70") %>
+  <% end %>
+<% end %>

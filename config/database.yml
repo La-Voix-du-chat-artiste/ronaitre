@@ -8,6 +8,11 @@ default: &default
   adapter: sqlite3
   max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
+  pragmas:
+    journal_mode: WAL
+    busy_timeout: 5000
+    foreign_keys: true
+    synchronous: NORMAL
 
 development:
   <<: *default
