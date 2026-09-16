@@ -23,6 +23,12 @@ bin/brakeman       # sécurité
 
 `app/assets/tailwind/application.css` : vert profond `oklch(54% .116 174.5)` (primaire/hero), orange `oklch(76% .16 72)` (CTA), police **system stack** (aucune webfont), chiffres du compteur en `font-mono` + `tabular-nums` (classe utilitaire `.counter-digits`).
 
+## Abstractions « providers » (objectif technique — stubs par défaut)
+
+- **SMS** : `lib/sms_gateway.rb` — `SmsGateway.adapter = MonAdapter.new` pour brancher un vrai provider. Stub actuel : log.
+- **Chatbot** : `lib/chatbot.rb` + `lib/chatbot/stub_provider.rb` — `Chatbot.provider = MonProvider.new`. Détection de crise (`Chatbot.crisis?`) court-circuite le provider et affiche le 3114 + ressources.
+- **CSAPA** : `Csapa::RefreshJob` est un placeholder (données seedées d'exemple).
+
 ## Déploiement (Kamal)
 
 1. Renseigner `config/deploy.yml` : IP du VPS (`servers.web`), domaine (`proxy.host`), registre d'images.

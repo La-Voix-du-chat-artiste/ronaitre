@@ -16,6 +16,9 @@ production:
   milestones_sweep:
     class: Milestones::SweepJob
     schedule: every 5 minutes
+  csapa_refresh:
+    class: Csapa::RefreshJob
+    schedule: every month on the 3rd at 4am
   db_backup:
     command: "bin/rails db:backup BACKUP_DIR=/rails/storage/backups BACKUP_KEEP=14"
     schedule: at 3am every day
