@@ -69,4 +69,4 @@ end
 
 gem "view_component", "~> 4.15"
 
-gem "json", "~> 2.18"
+gem "json", "~> 3.0"
